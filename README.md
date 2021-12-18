@@ -1,6 +1,6 @@
 # shopping_mall_project
 
 
-Link: [Google][googlelink]
+Link: [react_shopping_mall_project][link]
 
-[googlelink]: https://google.com "Go google"
+[link]: https://shop-toyproject.netlify.app/ "Go react_shopping_mall_project"
