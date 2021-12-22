@@ -28,8 +28,8 @@ function ProductPg(probs) {
                     롱보드
                 </div>
                 <div className="sort-box">
-                    <div onClick={()=>{dispatch({type:'SORT_DESC'})}}>높은 가격순</div>
-                    <div onClick={()=>{dispatch({type:'SORT_ASC'})}}>낮은 가격순</div>
+                    <div onClick={()=>{dispatch({type:'product/SORT_DESC'})}}>높은 가격순</div>
+                    <div onClick={()=>{dispatch({type:'product/SORT_ASC'})}}>낮은 가격순</div>
                     <div>인기 상품순</div>
                 </div>    
                 <div className="product-box">

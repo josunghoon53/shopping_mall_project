@@ -2,7 +2,7 @@ import './App.css';
 import { useEffect, useState} from 'react';
 import {Route,Switch} from 'react-router-dom';
 import {useDispatch,useSelector} from 'react-redux';
-import {getData} from '.'
+import {getData} from './modules/product'
 import ProductPg from './pages/productPg'
 import Toplist from './component/Toplist'
 import Detail from './pages/detailPg';
@@ -11,12 +11,13 @@ import Header from './component/Header';
 import Main from './component/Main';
 import Basket from './pages/basketPg';
 
+
 function App(probs) {
 
   let[slide,setSlide] = useState(['main_1.png'])
   let slideSrc = './img/';
   let [headon,setHeadon] = useState(false);
-  let state = useSelector((state)=>state);
+  let state = useSelector((state)=> state.product);
   const dispatch = useDispatch();  
 
   useEffect(()=>{

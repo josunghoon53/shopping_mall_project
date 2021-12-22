@@ -1,4 +1,5 @@
 import { useEffect,useRef,useState} from "react"
+import { useDispatch } from "react-redux";
 import {useParams} from 'react-router-dom';
 import { useHistory } from "react-router-dom";
 
@@ -7,11 +8,8 @@ function Detail(probs) {
     let {id} = useParams();
     let width = useRef();
     const history = useHistory();
+    const dispatch = useDispatch();
   
-   
- 
-    //조건부 렌더링
-
     return(
         <div className="detail-container">
             <div className='detail-product' ref={width}>
@@ -31,7 +29,12 @@ function Detail(probs) {
                     </div>
                 </div>
             </div>
-        </div>)
+        </div>
+    )
+
+    function setdata() {
+        dispatch()
+    }
 }
 
 
