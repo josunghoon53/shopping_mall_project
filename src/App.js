@@ -17,7 +17,8 @@ function App(probs) {
   let[slide,setSlide] = useState(['main_1.png'])
   let slideSrc = './img/';
   let [headon,setHeadon] = useState(false);
-  let state = useSelector((state)=> state.product);
+  let state  = useSelector((state)=> state.product);
+  let basket = useSelector((state)=> state.basket);
   const dispatch = useDispatch();  
 
   useEffect(()=>{
@@ -53,7 +54,7 @@ function App(probs) {
           </Route>
           <Route  path="/product"><ProductPg state = {state}/></Route>
           <Route  path="/detail/:id"><Detail state = {state}/></Route>
-          <Route path ="/cart"><Basket state ={state} /></Route>
+          <Route path ="/cart"><Basket basket = {basket} state ={state} /></Route>
         </Switch>
         <Footer/>
       </div>
