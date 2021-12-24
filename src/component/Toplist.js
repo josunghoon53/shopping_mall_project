@@ -2,7 +2,7 @@ import { useEffect,useState,useRef} from 'react';
 import {Link} from 'react-router-dom';
 
 
-function Toplist(probs) {
+function Toplist(props) {
     let ulWidth  = useRef();
     let [liwidth ,setWidth] = useState();
 
@@ -27,7 +27,7 @@ function Toplist(probs) {
           </div>
           <div className='list-container' >
             <ul className ='listbox'  ref={ulWidth}>
-              {probs.state && probs.state.map((el,idx) => {
+              {props.state && props.state.map((el,idx) => {
                 let id = idx+1
                 let img_src = './img/BEST'+id+'.png'             
                 if(idx < 3) 
@@ -38,7 +38,7 @@ function Toplist(probs) {
                       <span className='box'>
                         <img src= {img_src} alt=''/>
                       </span>
-                      <img src = {probs.state[idx].img} alt = ""/>
+                      <img src = {props.state[idx].img} alt = ""/>
                     </div>
                     <div className='img-text'></div>
                   </Link>

@@ -2,7 +2,7 @@ import { useEffect, useState, useRef} from 'react';
 import {Link} from 'react-router-dom';
 import {useDispatch,useSelector} from 'react-redux';
 
-function ProductPg(probs) {
+function ProductPg(props) {
 
     let ulWidth  = useRef();
     let [liwidth ,setWidth] = useState();
@@ -34,17 +34,17 @@ function ProductPg(probs) {
                 </div>    
                 <div className="product-box">
                     <ul className="ulProduct" ref={ulWidth}>
-                        {probs.state && probs.state.map((el,idx)=>{
+                        {props.state && props.state.map((el,idx)=>{
                             return(
                           <Link key={idx} style={{all:'unset'}} to = {`/detail/${idx}`}>   
                             <li key={idx} className="liProduct">
                                     <div className="liproduct-imgwrap" style={{width:liwidth+'px', height:liwidth*1.25+'px'}} >
-                                        <img src={probs.state[idx].img} alt=""/>
+                                        <img src={props.state[idx].img} alt=""/>
                                     </div>
                                     <div className="liproduct-text">
-                                        <p>{probs.state[idx].name}</p>
-                                        <p>{(parseInt(probs.state[idx].price)).toLocaleString()}</p>
-                                        <p>테스트확인용 [ {probs.state[idx].stock} ]</p>
+                                        <p>{props.state[idx].name}</p>
+                                        <p>{(parseInt(props.state[idx].price)).toLocaleString()}</p>
+                                        <p>테스트확인용 [ {props.state[idx].stock} ]</p>
                                     </div>
                             </li>
                            </Link>

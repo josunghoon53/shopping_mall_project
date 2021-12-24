@@ -1,5 +1,5 @@
 
-function Main(probs) {
+function Main(props) {
     return(
       <section>
         <div className='slidemain'> 
@@ -10,11 +10,11 @@ function Main(probs) {
             </div>
             <ul className = 'slider'>
                 {
-                  probs.slide.map((el,idx)=>{
+                  props.slide.map((el,idx)=>{
                     return(
                   <li key={idx} className = 'slide'>
                     <img  className = "mainImg" 
-                          src={probs.slideSrc+probs.slide[idx]} 
+                          src={props.slideSrc+props.slide[idx]} 
                           alt =""/>
                   </li>
                   )})

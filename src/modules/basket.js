@@ -25,16 +25,14 @@ export default function basket (state = basketState,action) {
 
       case PLUS:
       if(findIndx >=0){
-      let copy = [...state];
-      if(copy[findIndx].stock === copy[findIndx].quan){
-        alert("더 이상 재고가 없습니다");
-        return copy;
-      } else {
-        copy[findIndx].quan++;
-        return copy;
-      }
-
-  
+        let copy = [...state];
+        if(copy[findIndx].stock === copy[findIndx].quan){
+          alert("더 이상 재고가 없습니다");
+          return copy;
+        } else {
+          copy[findIndx].quan++;
+          return copy;
+        }
       } else{
       let copy = [...state];
       copy.push(action.payload);
