@@ -12,7 +12,7 @@ import Main from './component/Main';
 import Basket from './pages/basketPg';
 
 
-function App(probs) {
+function App(props) {
 
   let[slide,setSlide] = useState(['main_1.png'])
   let slideSrc = './img/';

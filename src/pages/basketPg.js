@@ -9,6 +9,8 @@ function Basket(props) {
     const dispatch = useDispatch();
     const [IdList, setIdList] = useState([])
 
+    window.itemchecked = itemchecked;
+
     useEffect(() => {
         let ids = []
         props.basket && props.basket.map((item, i) => {
@@ -65,8 +67,7 @@ function Basket(props) {
       })}  
      
       <div className='basket-btn'>     
-        <button onClick={()=>{console.log(itemchecked)
-                              console.log(props.basket)}} className='delbtn'>삭제하기</button>
+        <button onClick={()=>{dispatch({type:"basket/DELETE", payload:itemchecked})}} className='delbtn'>삭제하기</button>
         <button className='paybtn'>결제하기</button>  
       </div>          
     </div>
