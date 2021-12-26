@@ -1,14 +1,39 @@
+import { useState } from "react"
 
 function Main(props) {
-    return(
+
+    let [Move,setMove] = useState(0);
+  
+    function moveSlide(num) {
+      // eslint-disable-next-line default-case
+      switch(num){
+        case 100: {
+          if(Move !== 0) {
+            setMove(Move+num);
+          }
+          break;
+        }
+        case -100:{
+          if((props.slide.length-1)*-100 !== Move){
+            setMove(Move+num)
+          } 
+          break;
+        }
+      }
+    }
+
+
+    return(      
       <section>
         <div className='slidemain'> 
           <div className='sl-container'>
             <div className='arrow'>
-              <img className='arrowleft' onClick={()=>{}} src ='./img/leftArrow.png' alt=""/>
-              <img className='arrowright' src ='./img/rightArrow.png' alt=""/>
+              <img className='arrowleft' onClick={()=>{moveSlide(-100)}} src ='./img/leftArrow.png' alt=""/>
+              <img className='arrowright'  onClick={()=>{moveSlide(100)}} src ='./img/rightArrow.png' alt=""/>
             </div>
-            <ul className = 'slider'>
+         
+            <ul className = 'slider'  style={{transform:"translate("+Move+"vw)",
+                                              width: props.slide.length*100+"vw"}}>
                 {
                   props.slide.map((el,idx)=>{
                     return(

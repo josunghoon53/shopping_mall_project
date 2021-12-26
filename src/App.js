@@ -14,7 +14,7 @@ import Basket from './pages/basketPg';
 
 function App(props) {
 
-  let[slide,setSlide] = useState(['main_1.png'])
+  let[slide,setSlide] = useState(['main_1.png','main_2.jpg','main_3.jpg'])
   let slideSrc = './img/';
   let [headon,setHeadon] = useState(false);
   let state  = useSelector((state)=> state.product);
