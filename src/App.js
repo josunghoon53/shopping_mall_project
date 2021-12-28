@@ -12,6 +12,7 @@ import Main from './component/Main';
 import Basket from './pages/basketPg';
 
 
+
 function App(props) {
 
   let[slide,setSlide] = useState(['main_1.png','main_2.jpg','main_3.jpg'])
@@ -49,7 +50,8 @@ function App(props) {
           <Route exact path="/"> 
             {/*메인 이미지 슬라이드 구현 <미완>*/}
             <Main slide = {slide} 
-                  slideSrc = {slideSrc}/>           
+                  slideSrc = {slideSrc}
+                  setSlide={setSlide}/>           
             <Toplist state = {state}/>            
           </Route>
           <Route  path="/product"><ProductPg state = {state}/></Route>

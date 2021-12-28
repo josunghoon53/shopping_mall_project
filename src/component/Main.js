@@ -1,27 +1,65 @@
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 function Main(props) {
 
     let [Move,setMove] = useState(0);
+    const timeoutRef = useRef(null);
+
+  
   
     function moveSlide(num) {
       // eslint-disable-next-line default-case
       switch(num){
         case 100: {
-          if(Move !== 0) {
-            setMove(Move+num);
+          if(Move ===0) {
+            setMove(-500);
+          } else{
+          setMove(Move+num)
           }
           break;
         }
         case -100:{
-          if((props.slide.length-1)*-100 !== Move){
-            setMove(Move+num)
-          } 
+          if(Move ===-800) {
+            setMove(-300);
+          } else{
+          setMove(Move+num)
+          }
           break;
         }
       }
     }
 
+    useEffect(()=>{
+      const makeclone = () =>{
+        let copy = [...props.slide];
+        copy.push(...props.slide);
+        copy.unshift(...props.slide);
+        props.setSlide(copy);
+      };
+      setMove(-300);
+      makeclone();
+    },[])
+
+
+    function resetTimeout() {
+     
+    }
+  
+
+    useEffect(()=>{
+      const resetTimeout = () => {
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current);
+        }
+      };
+      resetTimeout();
+      timeoutRef.current = setTimeout(() => {
+        moveSlide(-100)
+      }, 2500);
+    })
+
+
+ 
 
     return(      
       <section>
@@ -35,13 +73,15 @@ function Main(props) {
             <ul className = 'slider'  style={{transform:"translate("+Move+"vw)",
                                               width: props.slide.length*100+"vw"}}>
                 {
+                  
                   props.slide.map((el,idx)=>{
-                    return(
-                  <li key={idx} className = 'slide'>
-                    <img  className = "mainImg" 
-                          src={props.slideSrc+props.slide[idx]} 
-                          alt =""/>
-                  </li>
+                 
+                  return(  
+                    <li key={idx}  className="slide">                    
+                      <img  className = "mainImg" 
+                            src={props.slideSrc+props.slide[idx]} 
+                            alt =""/>
+                    </li>
                   )})
                 }       
             </ul>
