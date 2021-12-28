@@ -25,23 +25,30 @@ function Detail(props) {
                     <div className='detail-button'>
                         <button onClick={()=>{
                         history.push({pathname:"/cart",state: id})
-                        dispatch({type:"basket/PLUS",
-                        payload:{id: id, 
-                                 name: props.state[id]?.name, 
-                                 quan:1, 
-                                 price: props.state[id]?.price,
-                                 img: props.state[id]?.img,
-                                 stock: props.state[id]?.stock} })
-                       
-                        }}>구매하기</button>
-                        <button>장바구니담기</button>
+                        basket_info()}}>구매하기</button>
+                        <button onClick={()=>{basket_info("basket")}}>장바구니담기</button>
                     </div>
                 </div>
             </div>
         </div>
     )
 
-    
+    function basket_info(btn) {
+        dispatch({type:"basket/PLUS",
+        payload:{id: id, 
+                 name: props.state[id]?.name, 
+                 quan:1, 
+                 price: props.state[id]?.price,
+                 img: props.state[id]?.img,
+                 stock: props.state[id]?.stock} })
+        
+        if(btn === "basket") {
+            if(window.confirm("상품이 장바구니에 추가되었습니다.\n장바구니로 이동하시겠습니까 ? ") === true) {
+                history.push("/cart");
+            }
+        }
+
+    }
    
 
 
