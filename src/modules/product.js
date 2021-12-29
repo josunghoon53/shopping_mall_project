@@ -5,6 +5,8 @@ import  axios from 'axios';
 const SET =  'product/SET'; 
 const SORT_DESC = 'product/SORT_DESC';
 const SORT_ASC = 'product/SORT_ASC';
+const SORT_POPU = 'product/SORT_POPU';
+
 
 
 /* ----------------- 액션 생성 함수 -------------------- */
@@ -46,6 +48,18 @@ export default function product (state = productState,action) {
           return parseFloat(a.price)-parseFloat(b.price) 
         })
         return copy_a;    
+
+      case SORT_POPU:
+        let copy_p = [...state];
+
+        copy_p.sort(function(a,b) {
+          return parseFloat(a.id)-parseFloat(b.id) 
+        })
+
+        copy_p.sort(function(a,b) {
+          return parseFloat(a.stock)-parseFloat(b.stock) 
+        })
+        return copy_p;        
 
       default:
         return state

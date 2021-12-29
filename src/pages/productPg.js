@@ -8,6 +8,7 @@ function ProductPg(props) {
     let [liwidth ,setWidth] = useState();
     const dispatch = useDispatch();  
 
+  
     useEffect(() => {
 
         setWidth((ulWidth.current.clientWidth-30)/4)
@@ -30,7 +31,7 @@ function ProductPg(props) {
                 <div className="sort-box">
                     <div onClick={()=>{dispatch({type:'product/SORT_DESC'})}}>높은 가격순</div>
                     <div onClick={()=>{dispatch({type:'product/SORT_ASC'})}}>낮은 가격순</div>
-                    <div>인기 상품순</div>
+                    <div onClick={()=>{dispatch({type:'product/SORT_POPU'})}}>인기 상품순</div>
                 </div>    
                 <div className="product-box">
                     <ul className="ulProduct" ref={ulWidth}>
@@ -38,14 +39,14 @@ function ProductPg(props) {
                             return(
                           <Link key={idx} style={{all:'unset'}} to = {`/detail/${idx}`}>   
                             <li key={idx} className="liProduct">
-                                    <div className="liproduct-imgwrap" style={{width:liwidth+'px', height:liwidth*1.25+'px'}} >
-                                        <img src={props.state[idx].img} alt=""/>
-                                    </div>
-                                    <div className="liproduct-text">
-                                        <p>{props.state[idx].name}</p>
-                                        <p>{(parseInt(props.state[idx].price)).toLocaleString()}</p>
-                                        <p>테스트확인용 [ {props.state[idx].stock} ]</p>
-                                    </div>
+                                <div className="liproduct-imgwrap" style={{width:liwidth+'px', height:liwidth*1.25+'px'}} >
+                                    <img src={props.state[idx].img} alt=""/>
+                                </div>
+                                <div className="liproduct-text">
+                                    <p>{props.state[idx].name}</p>
+                                    <p>{(parseInt(props.state[idx].price)).toLocaleString()}</p>
+                                    <p>테스트확인용 [ {props.state[idx].stock} ]</p>
+                                </div>
                             </li>
                            </Link>
                             )

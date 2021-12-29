@@ -12,6 +12,7 @@ import rootReducer from './modules/index'
 
 let store = createStore(rootReducer)
 
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter >

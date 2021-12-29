@@ -38,20 +38,22 @@ function Main(props) {
       };
       setMove(-300);
       makeclone();
+    
+      return () => {clearTimeout(makeclone)}
+      
     },[])
 
 
-    function resetTimeout() {
-     
-    }
+    
   
 
     useEffect(()=>{
-      const resetTimeout = () => {
+      const resetTimeout = () =>{
         if (timeoutRef.current) {
           clearTimeout(timeoutRef.current);
         }
       };
+
       resetTimeout();
       timeoutRef.current = setTimeout(() => {
         moveSlide(-100)

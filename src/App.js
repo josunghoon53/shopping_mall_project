@@ -10,12 +10,13 @@ import Footer from './component/Footer';
 import Header from './component/Header';
 import Main from './component/Main';
 import Basket from './pages/basketPg';
+import Join from './pages/joinPg'
 
 
 
 function App(props) {
 
-  let[slide,setSlide] = useState(['main_1.png','main_2.jpg','main_3.jpg'])
+  let[slide,setSlide] = useState(['main_1.png','main_2.png','main_3.png'])
   let slideSrc = './img/';
   let [headon,setHeadon] = useState(false);
   let state  = useSelector((state)=> state.product);
@@ -27,11 +28,15 @@ function App(props) {
       dispatch(result);
     })
   },[])
+    
+
+  
+ 
 
   /*스크롤이벤트*/
   useEffect(() => {
     const  ScrollFunc = () => {
-      if(window.pageYOffset <= 80){
+      if(window.pageYOffset <= 99){
         setHeadon(false);
       } else{
         setHeadon(true);
@@ -56,7 +61,8 @@ function App(props) {
           </Route>
           <Route  path="/product"><ProductPg state = {state}/></Route>
           <Route  path="/detail/:id"><Detail state = {state}/></Route>
-          <Route path ="/cart"><Basket basket = {basket} state ={state} /></Route>
+          <Route  path ="/cart"><Basket basket = {basket} state ={state} /></Route>
+          <Route  path ="/join"><Join/></Route>
         </Switch>
         <Footer/>
       </div>

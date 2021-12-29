@@ -1,14 +1,16 @@
 import { useEffect,useState,useRef} from 'react';
 import {Link} from 'react-router-dom';
-
+import {useDispatch,useSelector} from 'react-redux';
 
 function Toplist(props) {
     let ulWidth  = useRef();
     let [liwidth ,setWidth] = useState();
-
-
+    let dispatch = useDispatch();
+    
+   
     /*리사이즈이벤트*/
     useEffect(() => {
+        setWidth((ulWidth.current.clientWidth-60)/3)
         const resizeFuc = () =>{
           setWidth((ulWidth.current.clientWidth-60)/3)
         }
@@ -16,9 +18,8 @@ function Toplist(props) {
         return () => {
           window.removeEventListener("resize", resizeFuc);
         };
-      },);
-    
-       
+    }, [],);
+
     return(
       <div className='inner'>
         <div className='container'>
@@ -27,7 +28,9 @@ function Toplist(props) {
           </div>
           <div className='list-container' >
             <ul className ='listbox'  ref={ulWidth}>
+              
               {props.state && props.state.map((el,idx) => {
+             
                 let id = idx+1
                 let img_src = './img/BEST'+id+'.png'             
                 if(idx < 3) 
@@ -49,6 +52,9 @@ function Toplist(props) {
         </div>    
       </div>  
     )
+
+  
+
 }
 
 export default Toplist

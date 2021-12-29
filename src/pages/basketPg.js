@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 function Basket(props) {
 
     let [itemchecked,setItemchecked] = useState([]);
-    let [ischeck,setIscheck] = useState();
     const dispatch = useDispatch();
     const [IdList, setIdList] = useState([])
 
