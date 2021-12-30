@@ -5,11 +5,11 @@ import { useDispatch } from "react-redux";
 function Basket(props) {
 
     let [itemchecked,setItemchecked] = useState([]);
+    let [allchk, setAllchk] = useState(false);
     const dispatch = useDispatch();
     const [IdList, setIdList] = useState([])
 
-    window.itemchecked = itemchecked;
-
+    
     useEffect(() => {
         let ids = []
         props.basket && props.basket.map((item, i) => {
@@ -19,6 +19,7 @@ function Basket(props) {
      }, [])
   
 
+
     return(
     <div className="cart-container">
       <div className="cart-titlebox">
@@ -26,8 +27,8 @@ function Basket(props) {
       </div>
       <ul className="cart-listbox">
         <input onChange={(e)=>{
-            const all_chk = e.target.checked;
-            setItemchecked(all_chk? IdList : [])
+            setAllchk(e.target.checked);
+            setItemchecked(allchk? [] : IdList)
         }} className='main-checkbox' type={"checkbox"}/> 
         <li>이미지</li>
         <li>상품정보</li>
@@ -44,6 +45,7 @@ function Basket(props) {
                 const chk = e.target.checked;
                 if(chk === true) {
                     setItemchecked([...itemchecked,props.basket[idx].id])
+                    
                 } else {
                     setItemchecked(itemchecked.filter((el) => el !== props.basket[idx].id));
                 }
