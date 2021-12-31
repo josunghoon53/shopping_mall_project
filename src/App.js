@@ -21,6 +21,8 @@ function App(props) {
   let [headon,setHeadon] = useState(false);
   let state  = useSelector((state)=> state.product);
   let basket = useSelector((state)=> state.basket);
+  let join = useSelector((state)=> state.join);
+
   const dispatch = useDispatch();  
 
   useEffect(()=>{
@@ -62,7 +64,7 @@ function App(props) {
           <Route  path="/product"><ProductPg state = {state}/></Route>
           <Route  path="/detail/:id"><Detail state = {state}/></Route>
           <Route  path ="/cart"><Basket basket = {basket} state ={state} /></Route>
-          <Route  path ="/join"><Join/></Route>
+          <Route  path ="/join"><Join join = {join}/></Route>
         </Switch>
         <Footer/>
       </div>

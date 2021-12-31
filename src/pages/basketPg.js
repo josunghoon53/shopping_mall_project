@@ -26,7 +26,7 @@ function Basket(props) {
           <p>주문정보</p>
       </div>
       <ul className="cart-listbox">
-        <input onChange={(e)=>{
+        <input checked={allchk} onChange={(e)=>{
             setAllchk(e.target.checked);
             setItemchecked(allchk? [] : IdList)
         }} className='main-checkbox' type={"checkbox"}/> 
@@ -44,10 +44,10 @@ function Basket(props) {
             <input onChange={(e)=>{
                 const chk = e.target.checked;
                 if(chk === true) {
-                    setItemchecked([...itemchecked,props.basket[idx].id])
-                    
+                    setItemchecked([...itemchecked,props.basket[idx].id])               
                 } else {
                     setItemchecked(itemchecked.filter((el) => el !== props.basket[idx].id));
+                    setAllchk(false);
                 }
             }}
                 

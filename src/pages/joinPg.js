@@ -1,21 +1,23 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
+import { useDispatch } from "react-redux";
 
 
-function Join () {
+function Join (props) {
 
     const nocheck = './img/nocheck.png'
     const check = './img/checked.png'
+    const dispatch = useDispatch();
 
     let [allchecked,setallChecked] = useState(nocheck);
     let [itemcheck,setItemcheck] =useState([nocheck,nocheck,nocheck,nocheck,nocheck]);
-    
     let [toutext,setToutext] = useState([]);
 
 
+    let[idchk,setIdchk] = useState('');
+    let[pwchk,setPwchk] = useState('');
 
     useEffect(()=>{
-
       const data = async ()=> { 
         const dt = await axios.get('tou.json');
         return (dt.data)
@@ -24,7 +26,6 @@ function Join () {
       data().then((result)=>{
         setToutext(result)       
       });
-
     },[])
 
     function touallcheck() {
@@ -57,42 +58,53 @@ function Join () {
       }
     }
     
-     
-      
-    
 
+
+    
+ 
     return (
         <div className="inner">   
           <div className="join-container">
+
             <div className="userInfo-container">
               <h1 className="userInfo-title">회원가입</h1>
               <p className="userInfo-sub">기본정보</p>
               <ul className="userInfo-box">
+                
                 <li className="info id">
                   <div className="infoname">아이디</div>
-                  <input className="input-info"></input>
-
+                  <input type="text" className="input-info" onChange={(e)=>{
+                    setIdchk(e.target.value)
+                  }}/>
+                  <button className="doublechk-btn" onClick={()=>{
+                    dispatch({type:"join/ID_CHK" ,payload:idchk})
+                  }}>중복확인</button>
                 </li>
+
                 <li className="info pw">
                   <div className="infoname">비밀번호</div>
-                  <input className="input-info"></input>
-        
+                  <input onChange={(e)=>{
+                    setPwchk(e.target.value)
+                    dispatch({type:"join/PW_CHK", payload :pwchk})}} type="password" maxLength="16" className="input-info"></input>
+                  <p className="warning"></p>
+                  <p className="pw-condition">(영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 10자~16자)</p>
                 </li>  
+                    <button on onClick={()=>{console.log(props.join)}}/>
                 <li className="info pw-confirm">
                   <div className="infoname">비밀번호 확인</div>
-                  <input className="input-info"></input>
-          
+                  <input type="password" maxLength="16" className="input-info"></input>
                 </li>  
+
                 <li className="info name">
                   <div className="infoname">이름</div>
                   <input className="input-info"></input>
-
                 </li>  
+
                 <li className="info email">
                   <div className="infoname">이메일</div>
                   <input className="input-info"></input>
-
                 </li>  
+
                 <li className="info phone">
                   <div className="infoname">휴대전화</div>
                   <div className="phone-box" style={{paddingLeft:"0", marginLeft:"26px"}}>
@@ -109,6 +121,7 @@ function Join () {
                     <input className="phoneNum"></input>
                   </div>
                 </li>    
+
               </ul>    
             </div>
 
@@ -142,6 +155,10 @@ function Join () {
                 })}
 
               </div>
+            </div>
+
+            <div className="joinbtn-box">
+              <button className="joinbtn">회원가입</button>
             </div>
           </div>
         </div>
