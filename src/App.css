@@ -44,13 +44,15 @@
 
 .pw-condition {
   margin: 0;
-  margin-left: 10px;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .warning {
   margin: 0;
   margin-left: 10px;
+  margin-right: 10px;
+  font-size: 12px;
+  color: red;
 }
 
 .info {
