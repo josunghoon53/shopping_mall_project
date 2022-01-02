@@ -10,7 +10,10 @@ function Signup(i,memDB,chk) {
   const eng = /[a-zA-Z]/gi;
   const num = /^[0-9]/gi;
   const num_pw = /[0-9]/gi;
+  const name = /^[가-힣]{2,4}$/;
   const corrID = /^[a-z]+[a-z0-9]{3,19}/gi;
+  const phone_first = /^[1-9]+[0-9]{2,3}/
+  const phone_second = /[0-9]{3,4}/
   const email = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
   let list = [];
   
@@ -97,11 +100,45 @@ function Signup(i,memDB,chk) {
 
     }
 
+    case "NAME": {
+     
+      if(name.test(chk)){
+       
+        return "";
+      }
+      else {
+       
+        return "올바른 이름형식을 입력해주세요"
+      }
 
-    case "b": {
-      return console.log("")
+    }
+   
+    case "PHONE_first": {
+     
+      if(phone_first.test(chk)){
+       
+        return chk;
+      }
+      else {
+       
+        return "";
+      }
+
     }
 
+    case "PHONE_second": {
+     
+      if(phone_second.test(chk)){
+       
+        return chk;
+      }
+      else {
+       
+        return "";
+      }
+
+    }
+   
 
   }
 }

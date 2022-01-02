@@ -3,16 +3,14 @@ import { useState } from 'react';
 
 /* ----------------- 액션 타입 ------------------------ */
 
-const ID_CHK = "join/ID_CHK"
-const PW_CHK = "join/PW_CHK"
-
+const PUSH = "join/PUSH"
 /* ----------------- 액션 생성 함수 -------------------- */
 
 
 
 
 /* ----------------- 모듈의 초기 상태 ------------------ */
-const memberState = [{id:"asdf",
+const memberState = [{id:"",
                       pw:"",
                       pwchk:"",
                       name:"",
@@ -30,46 +28,26 @@ const memberState = [{id:"asdf",
 export default function product (state = memberState,action) {
 
   
+  /* eslint-disable-next-line default-case*/
+  switch(action.type) {
+    case PUSH: {
 
-  // eslint-disable-next-line default-case
-  switch(action.type){
-   
-    case ID_CHK: {
+      let copy = [...state];
+      copy.push(action.payload);
 
-
-      let chk = action.payload
-
-     
-      let doubleChk = state.find(el=>{
-        return el.id === chk
-      })
-
-      if(doubleChk !== undefined) {
-        alert("중복된 아이디입니다.");
-      } 
-      else {
-        
-        
-      }
       
-      break;
+      return copy;
     }
 
-    
-    case PW_CHK: {
-     
-      
-      let chk = action.payload;
-
-      
-      break;
-
-    }
+    default:
+      return state 
 
     
   }
 
-  return state;
+  
+  
+
   
   
 }
