@@ -3,6 +3,10 @@ import { useEffect, useState } from "react"
 import Signup  from "../component/Signup";
 import {useDispatch,useSelector} from 'react-redux';
 
+import { authService, firestore } from "../firebase";
+
+
+
 function Join (props) {
 
     const nocheck = './img/nocheck.png'
@@ -22,8 +26,9 @@ function Join (props) {
     let[email,setEmail] = useState('');
     let [phoneid,setPhoneid] = useState(['010','011','016','017','018'])
     let [phone,setPhone]= useState(['010','',''])
-    
 
+
+   
     useEffect(()=>{
       const data = async ()=> { 
         const dt = await axios.get('tou.json');
@@ -196,6 +201,29 @@ function Join (props) {
                   </form>                
                 </div>
               </li>    
+
+              <button onClick={()=>{
+              
+                
+                authService.createUserWithEmailAndPassword(email,pwchk)
+                .then((result)=>{console.log(result.user.uid)})
+
+              }}/>
+
+              <button onClick={()=>{
+           
+                console.log(firestore.collection("users")
+                .get()
+                .then((docs)=>{
+                  docs.forEach((doc)=>{
+                    console.log(doc.id)
+                  })
+                })
+
+                )
+               
+                
+              }}/>
             </ul>    
           </div>
 
@@ -254,7 +282,6 @@ function Join (props) {
               }
                     
             }}>회원가입</button>
-          < button onClick={()=>{console.log(props.join)}}/>
           </div>
         </div>
       </div>
