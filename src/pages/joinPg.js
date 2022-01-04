@@ -19,6 +19,8 @@ function Join (props) {
 
     let [register,setRegister] = useState([false,false,false,false,false,false,false])
     let[idchk,setIdchk] = useState('');
+    let[idbool,setIdbool] = useState(true);
+
     let[dbchk,setDbchk] = useState(false);
     let[pwchk,setPwchk] = useState('');
     let[pwconfirm,setPwconfirm] = useState('');
@@ -27,7 +29,7 @@ function Join (props) {
     let [phoneid,setPhoneid] = useState(['010','011','016','017','018'])
     let [phone,setPhone]= useState(['010','',''])
 
-
+    const mem = firestore.collection("users");
    
     useEffect(()=>{
       const data = async ()=> { 
@@ -57,6 +59,10 @@ function Join (props) {
         })
       }
     }
+
+
+    
+
     
     function toucheck(idx) {
       let copy = [...itemcheck]
@@ -69,6 +75,20 @@ function Join (props) {
         setallChecked(nocheck)
       }
     }
+
+    function check_btn() {
+      let copy = [...register];   
+      firestore.collection("users")
+      .where("user_id","==",idchk)
+      .get()
+      .then((docs)=>{
+        Signup("ID",docs.empty,idchk) === "사용가능한 아이디입니다."
+        ? copy[0] = true : copy[0] = false
+        setRegister(copy);
+        alert(Signup("ID",docs.empty,idchk))
+      }) 
+    }
+  
     
     function memberInfo_push() {
       dispatch(
@@ -77,6 +97,8 @@ function Join (props) {
 
       alert("회원가입을 축하드립니다.")
     }
+
+   
 
     return (
       <div className="inner">   
@@ -97,11 +119,7 @@ function Join (props) {
                   setRegister(copy);
                 }}/>
                 <button className="doublechk-btn" onClick={()=>{
-                  let copy = [...register];
-                  Signup("ID",props.join,idchk) === "사용가능한 아이디입니다."
-                  ? copy[0] = true : copy[0] = false
-                  setRegister(copy);
-                  alert(Signup("ID",props.join,idchk))
+                  check_btn();           
                 }}>중복확인</button>
               </li>
 
@@ -159,10 +177,14 @@ function Join (props) {
                   ? copy[4] = true : copy[4] = false 
                   setRegister(copy);
                 }}/>
-                 <p className="warning">{
+
+                <p className="warning">{
                   email !== "" 
                   ? Signup("EMAIL",props.join,email)
-                  : ""}</p>
+                  : ""
+                  
+                  }
+                </p> 
               </li>  
 
               <li className="info phone">
@@ -203,26 +225,35 @@ function Join (props) {
               </li>    
 
               <button onClick={()=>{
-              
                 
-                authService.createUserWithEmailAndPassword(email,pwchk)
-                .then((result)=>{console.log(result.user.uid)})
+                let users = firestore.collection("users");
+                users.get()
+                .then((docs)=>{
+                  let bucket_data = [];
+                  docs.forEach((doc)=>{
+                    if(doc.exists) {
+                      bucket_data = [...bucket_data, { id: doc.id, ...doc.data() }];
+                    }
+                  })
+                });
 
-              }}/>
+                
+              }
+
+  
+    
+              }/>
 
               <button onClick={()=>{
-           
-                console.log(firestore.collection("users")
-                .get()
-                .then((docs)=>{
-                  docs.forEach((doc)=>{
-                    console.log(doc.id)
-                  })
-                })
 
-                )
-               
+               dispatch({type:"join/SET"})
                 
+                 
+                
+
+              
+                
+
               }}/>
             </ul>    
           </div>

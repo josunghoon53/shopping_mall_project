@@ -3,7 +3,9 @@ import { useState } from 'react';
 
 /* ----------------- 액션 타입 ------------------------ */
 
-const PUSH = "join/PUSH"
+export const PUSH = "join/PUSH"
+export const SET = "join/SET"
+export const FIN = "join/FIN"
 /* ----------------- 액션 생성 함수 -------------------- */
 
 
@@ -38,6 +40,19 @@ export default function product (state = memberState,action) {
       
       return copy;
     }
+
+    case SET: {
+
+
+      return state
+    }
+
+    case FIN: {
+
+
+      return state
+    }
+
 
     default:
       return state 

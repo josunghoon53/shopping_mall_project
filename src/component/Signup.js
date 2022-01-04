@@ -1,4 +1,6 @@
 import {useState} from "react"
+import { doc, getDoc } from "firebase/firestore";
+import { authService, firestore } from "../firebase";
 
 /* eslint-disable */
 
@@ -8,29 +10,26 @@ function Signup(i,memDB,chk) {
   const speChr = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
   const kor =  /[ㄱ-ㅎㅏ-ㅣ가-힣]/gi; 
   const eng = /[a-zA-Z]/gi;
+  const eng_upper = /[A-Z]$/g;
   const num = /^[0-9]/gi;
   const num_pw = /[0-9]/gi;
   const name = /^[가-힣]{2,4}$/;
-  const corrID = /^[a-z]+[a-z0-9]{3,19}/gi;
+  const corrID = /^[a-z]+[a-z0-9]{3,19}$/g;
   const phone_first = /^[1-9]+[0-9]{2,3}/
   const phone_second = /[0-9]{3,4}/
   const email = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
   let list = [];
-  
-  let id = memDB.find(el=>{
-    return el.id === chk
-  })
+  let bool =[];
 
-  
+
 
   switch(i){
 
     case "ID": {
 
      
-      if(id !==undefined){
+      if(memDB === false && chk !== ""){
         list.push("중복된 아이디입니다.")
-       
       }
 
       else {
@@ -53,7 +52,11 @@ function Signup(i,memDB,chk) {
           }
           if(num.test(chk)) {
             list.push("숫자로 시작하거나 숫자로만 아이디를 만들 수 없습니다");
-          }      
+          }
+          if(eng_upper.test(chk)) {
+            list.push("영소문자로만 작성가능합니다.");
+          }
+
         }
       }
 
@@ -88,10 +91,12 @@ function Signup(i,memDB,chk) {
     }
 
     case "EMAIL": {
-     
+      
+
       if(email.test(chk)){
+        
+        return ""
        
-        return "";
       }
       else {
        

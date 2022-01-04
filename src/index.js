@@ -6,12 +6,25 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
-import {createStore } from 'redux';
+import {applyMiddleware, createStore } from 'redux';
 import product from './modules/product'
 import rootReducer from './modules/index'
+import createSagaMiddleware from 'redux-saga';
+import rootSaga from './saga';
+import { createLogger } from 'redux-logger';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
-let store = createStore(rootReducer)
 
+
+
+
+const logger = createLogger({
+  
+}); 
+const sagaMiddleware = createSagaMiddleware();
+let store = createStore(rootReducer,
+  composeWithDevTools(applyMiddleware(sagaMiddleware,logger)))
+sagaMiddleware.run(rootSaga); 
 
 ReactDOM.render(
   <React.StrictMode>

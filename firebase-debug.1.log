@@ -1,0 +1,35 @@
+[debug] [2022-01-04T01:24:34.476Z] ----------------------------------------------------------------------
+[debug] [2022-01-04T01:24:34.478Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\josun\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2022-01-04T01:24:34.479Z] CLI Version:   9.12.1
+[debug] [2022-01-04T01:24:34.479Z] Platform:      win32
+[debug] [2022-01-04T01:24:34.479Z] Node Version:  v16.13.1
+[debug] [2022-01-04T01:24:34.480Z] Time:          Tue Jan 04 2022 10:24:34 GMT+0900 (대한민국 표준시)
+[debug] [2022-01-04T01:24:34.480Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-01-04T01:24:34.488Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-01-04T01:24:34.488Z] > authorizing via signed-in user (josung053@gmail.com)
+[debug] [2022-01-04T01:24:34.488Z] [iam] checking project shopping-mall-cdaf5 for permissions ["firebase.projects.get"]
+[debug] [2022-01-04T01:24:34.491Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/shopping-mall-cdaf5:testIamPermissions  
+ {"permissions":["firebase.projects.get"]}
+[debug] [2022-01-04T01:24:35.579Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Tue, 04 Jan 2022 01:24:36 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=824","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-01-04T01:24:35.580Z] > refreshing access token with scopes: []
+[debug] [2022-01-04T01:24:35.581Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-01-04T01:24:35.805Z] <<< HTTP RESPONSE 200 {"expires":"Mon, 01 Jan 1990 00:00:00 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","date":"Tue, 04 Jan 2022 01:24:36 GMT","pragma":"no-cache","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-01-04T01:24:35.817Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/shopping-mall-cdaf5 [none]
+[debug] [2022-01-04T01:24:36.337Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/shopping-mall-cdaf5 200
+[debug] [2022-01-04T01:24:36.338Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/shopping-mall-cdaf5 {"projectId":"shopping-mall-cdaf5","projectNumber":"760853867590","displayName":"SHOPPING-Mall","name":"projects/shopping-mall-cdaf5","resources":{"hostingSite":"shopping-mall-cdaf5","storageBucket":"shopping-mall-cdaf5.appspot.com","locationId":"asia-northeast3"},"state":"ACTIVE"}
+[info] 
+[info] === Serving from 'C:\Users\josun\Desktop\프론트엔드\shopping_mall_project'...
+[info] 
+[debug] [2022-01-04T01:24:36.343Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/shopping-mall-cdaf5/sites 
+[debug] [2022-01-04T01:24:37.636Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/shopping-mall-cdaf5/sites 200
+[debug] [2022-01-04T01:24:37.636Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/shopping-mall-cdaf5/sites {"sites":[{"name":"projects/760853867590/sites/shopping-mall-cdaf5","defaultUrl":"https://shopping-mall-cdaf5.web.app","appId":"1:760853867590:web:64398bfdfb8b29f1a32e47","type":"DEFAULT_SITE"}]}
+[debug] [2022-01-04T01:24:37.637Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/shopping-mall-cdaf5/webApps/1:760853867590:web:64398bfdfb8b29f1a32e47/config [none]
+[debug] [2022-01-04T01:24:39.211Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/shopping-mall-cdaf5/webApps/1:760853867590:web:64398bfdfb8b29f1a32e47/config 200
+[debug] [2022-01-04T01:24:39.212Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/shopping-mall-cdaf5/webApps/1:760853867590:web:64398bfdfb8b29f1a32e47/config {"projectId":"shopping-mall-cdaf5","appId":"1:760853867590:web:64398bfdfb8b29f1a32e47","storageBucket":"shopping-mall-cdaf5.appspot.com","locationId":"asia-northeast3","apiKey":"AIzaSyAFUySMejB7jEZpdHq3AWNP-AELAfhk-cA","authDomain":"shopping-mall-cdaf5.firebaseapp.com","messagingSenderId":"760853867590","measurementId":"G-WGMPP2S1TF"}
+[warn] !  hosting: Port 5000 is not available. Trying another port... {"metadata":{"emulator":{"name":"hosting"},"message":"\u001b[33mhosting: \u001b[39mPort 5000 is not available. Trying another port..."}}
+[info] i  hosting: Serving hosting files from: public {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mpublic\u001b[22m"}}
+[info] +  hosting: Local server: http://localhost:5005 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://localhost:5005\u001b[22m\u001b[24m"}}
+[info] i  hosting: 127.0.0.1 - - [04/Jan/2022:01:24:44 +0000] "GET / HTTP/1.1" 200 1892 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [04/Jan/2022:01:24:44 +0000] \"GET / HTTP/1.1\" 200 1892 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [04/Jan/2022:01:24:44 +0000] "GET /%PUBLIC_URL%/favicon.ico HTTP/1.1" 500 - "http://localhost:5005/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [04/Jan/2022:01:24:44 +0000] \"GET /%PUBLIC_URL%/favicon.ico HTTP/1.1\" 500 - \"http://localhost:5005/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36\""}}
