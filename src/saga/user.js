@@ -1,31 +1,37 @@
-import {all, fork, takeLatest,put} from 'redux-saga/effects';
-import {SET,FIN} from '../modules/join'
+import {all, fork, takeLatest,put, takeEvery,call} from 'redux-saga/effects';
+import {USER_FAILURE, USER_REQUEST, USER_SUCCESS} from '../modules/join'
+import { authService, firestore } from "../firebase";
 
 
+let user_data = firestore.collection("users");
+let user_list = [];
 
-function* load() {
-  try {
- 
-    yield put({
-      type:FIN
+const user_db =()=>{
+  user_data.get()
+  .then((docs)=>{
+    docs.forEach((doc)=>{
+      user_list.push({id: doc.id,...doc.data()})
     })
+  })
+  return user_list;
+}
+        
+
+function* loadUser() {
+
+  try {
+    yield call(user_db);
+    yield put({ type: USER_SUCCESS, payload: user_list});
+   
   } catch (e) {
-    console.error(e)
+    yield put({ type: USER_FAILURE, payload:e});
   }
 }
 
 
 
-function* userObserver() {
-  
-  yield takeLatest(SET, load)
-}
-
-
-
 export default function* userSaga () {
-  yield all([
-    fork(userObserver),
-  ]);
+  
+  yield takeEvery(USER_REQUEST,loadUser)
   
 }

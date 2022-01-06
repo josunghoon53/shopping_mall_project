@@ -29,11 +29,13 @@ function App(props) {
     getData().then((result)=>{
       dispatch(result);
     })
+
+    
+    
   },[])
     
 
   
- 
 
   /*스크롤이벤트*/
   useEffect(() => {

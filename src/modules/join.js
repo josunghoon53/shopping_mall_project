@@ -1,69 +1,43 @@
-import  axios from 'axios';
-import { useState } from 'react';
-
 /* ----------------- 액션 타입 ------------------------ */
 
-export const PUSH = "join/PUSH"
-export const SET = "join/SET"
-export const FIN = "join/FIN"
+export const USER_REQUEST = "join/USER_REQUEST"
+export const USER_SUCCESS = "join/USER_SUCCESS"
+export const USER_FAILURE = "join/USER_FAILURE"
 /* ----------------- 액션 생성 함수 -------------------- */
 
-
+export const user_req = (payload) =>{
+  return {
+    type : USER_REQUEST,
+    payload,
+  }
+}
 
 
 /* ----------------- 모듈의 초기 상태 ------------------ */
-const memberState = [{id:"",
-                      pw:"",
-                      pwchk:"",
-                      name:"",
-                      email:"",
-                      phone:"",
-                      allchk:"",
-                      nec1:"",
-                      nec2:"",
-                      sel1:"",
-                      sel2:"",
-                      sel3:"",}];
+const memberState = [];
 
 /* ----------------- 리듀서 ---------------------------- */
 
-export default function product (state = memberState,action) {
+export default function join (state = memberState,action) {
 
   
   /* eslint-disable-next-line default-case*/
   switch(action.type) {
-    case PUSH: {
 
-      let copy = [...state];
-      copy.push(action.payload);
+    case USER_SUCCESS: {
 
       
-      return copy;
+
+      return action.payload
     }
 
-    case SET: {
-
-
+    case USER_FAILURE: {
       return state
     }
-
-    case FIN: {
-
-
-      return state
-    }
-
 
     default:
-      return state 
-
-    
+      return state   
   }
-
-  
-  
-
-  
   
 }
 

@@ -22,7 +22,7 @@ export const getData = async() =>{
 
 
 /* ----------------- 모듈의 초기 상태 ------------------ */
-const productState = [{}];
+const productState = [];
 
 /* ----------------- 리듀서 ---------------------------- */
 

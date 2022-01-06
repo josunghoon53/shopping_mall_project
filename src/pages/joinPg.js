@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
 import Signup  from "../component/Signup";
-import {useDispatch,useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 
-import { authService, firestore } from "../firebase";
+import {firestore } from "../firebase";
+import {user_req} from "../modules/join";
 
 
 
@@ -28,7 +29,7 @@ function Join (props) {
     let[email,setEmail] = useState('');
     let [phoneid,setPhoneid] = useState(['010','011','016','017','018'])
     let [phone,setPhone]= useState(['010','',''])
-
+    let user_list = []
     const mem = firestore.collection("users");
    
     useEffect(()=>{
@@ -36,11 +37,15 @@ function Join (props) {
         const dt = await axios.get('tou.json');
         return (dt.data)
       }
-
       data().then((result)=>{
         setToutext(result)       
       });
     },[])
+
+    useEffect(()=>{
+      dispatch(user_req()) 
+    },[])
+
 
     function touallcheck() {
       let copy = [...itemcheck]
@@ -60,10 +65,7 @@ function Join (props) {
       }
     }
 
-
-    
-
-    
+   
     function toucheck(idx) {
       let copy = [...itemcheck]
       if(copy[idx] === nocheck) {
@@ -75,6 +77,7 @@ function Join (props) {
         setallChecked(nocheck)
       }
     }
+
 
     function check_btn() {
       let copy = [...register];   
@@ -224,37 +227,15 @@ function Join (props) {
                 </div>
               </li>    
 
-              <button onClick={()=>{
-                
-                let users = firestore.collection("users");
-                users.get()
-                .then((docs)=>{
-                  let bucket_data = [];
-                  docs.forEach((doc)=>{
-                    if(doc.exists) {
-                      bucket_data = [...bucket_data, { id: doc.id, ...doc.data() }];
-                    }
-                  })
-                });
-
-                
-              }
-
-  
-    
-              }/>
-
-              <button onClick={()=>{
-
-               dispatch({type:"join/SET"})
-                
-                 
-                
-
               
-                
 
+              <button onClick={()=>{
+                console.log(props.join)
+    
+              
               }}/>
+
+             
             </ul>    
           </div>
 

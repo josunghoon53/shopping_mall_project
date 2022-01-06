@@ -44,24 +44,34 @@ function Main(props) {
     },[])
 
 
+
+    //setinterval 사용시 문제 발생으로 인해 커스텀 훅 사용 
+    //https://overreacted.io/making-setinterval-declarative-with-react-hooks/
+    //위 링크 참조해서 setinterval과 useinterval 의 차이 공부하기
     
+    useInterval(()=>{
+      moveSlide(-100);
+    },2500)
+
+    function useInterval(callback, delay) {
+      const savedCallback = useRef(); // 최근에 들어온 callback을 저장할 ref를 하나 만든다.
+    
+      useEffect(() => {
+        savedCallback.current = callback; // callback이 바뀔 때마다 ref를 업데이트 해준다.
+      }, [callback]);
+    
+      useEffect(() => {
+        function tick() {
+          savedCallback.current(); // tick이 실행되면 callback 함수를 실행시킨다.
+        }
+        if (delay !== null) { // 만약 delay가 null이 아니라면 
+          let id = setInterval(tick, delay); // delay에 맞추어 interval을 새로 실행시킨다.
+          return () => clearInterval(id); // unmount될 때 clearInterval을 해준다.
+        }
+      }, [delay]); // delay가 바뀔 때마다 새로 실행된다.
+    }
   
 
-    useEffect(()=>{
-      const resetTimeout = () =>{
-        if (timeoutRef.current) {
-          clearTimeout(timeoutRef.current);
-        }
-      };
-
-      resetTimeout();
-      timeoutRef.current = setTimeout(() => {
-        moveSlide(-100)
-      }, 2500);
-    })
-
-
- 
 
     return(      
       <section>
