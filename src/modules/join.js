@@ -23,12 +23,9 @@ export default function join (state = memberState,action) {
   
   /* eslint-disable-next-line default-case*/
   switch(action.type) {
-
     case USER_SUCCESS: {
-
-      
-
-      return action.payload
+      state = action.payload
+      return state
     }
 
     case USER_FAILURE: {

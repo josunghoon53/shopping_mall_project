@@ -11,6 +11,7 @@ import Header from './component/Header';
 import Main from './component/Main';
 import Basket from './pages/basketPg';
 import Join from './pages/joinPg'
+import Login from './component/Login';
 
 
 
@@ -22,7 +23,8 @@ function App(props) {
   let state  = useSelector((state)=> state.product);
   let basket = useSelector((state)=> state.basket);
   let join = useSelector((state)=> state.join);
-
+  let [modal,setModal] = useState(false);
+  
   const dispatch = useDispatch();  
 
   useEffect(()=>{
@@ -34,8 +36,6 @@ function App(props) {
     
   },[])
     
-
-  
 
   /*스크롤이벤트*/
   useEffect(() => {
@@ -54,7 +54,8 @@ function App(props) {
 
   return (
       <div className="App"> 
-        <Header headon = {headon}/>
+        <Header headon = {headon} setModal = {setModal}/>
+        {modal ? <Login setModal = {setModal}/>:null}
         <Switch>
           <Route exact path="/"> 
             {/*메인 이미지 슬라이드 구현 <미완>*/}

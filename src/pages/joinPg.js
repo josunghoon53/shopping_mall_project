@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import Signup  from "../component/Signup";
 import {useDispatch} from 'react-redux';
 
-import {firestore } from "../firebase";
+import {authService, firestore } from "../firebase";
 import {user_req} from "../modules/join";
 
 
@@ -29,9 +29,7 @@ function Join (props) {
     let[email,setEmail] = useState('');
     let [phoneid,setPhoneid] = useState(['010','011','016','017','018'])
     let [phone,setPhone]= useState(['010','',''])
-    let user_list = []
-    const mem = firestore.collection("users");
-   
+  
     useEffect(()=>{
       const data = async ()=> { 
         const dt = await axios.get('tou.json');
@@ -79,27 +77,18 @@ function Join (props) {
     }
 
 
-    function check_btn() {
-      let copy = [...register];   
-      firestore.collection("users")
-      .where("user_id","==",idchk)
-      .get()
-      .then((docs)=>{
-        Signup("ID",docs.empty,idchk) === "사용가능한 아이디입니다."
-        ? copy[0] = true : copy[0] = false
-        setRegister(copy);
-        alert(Signup("ID",docs.empty,idchk))
-      }) 
-    }
-  
+
     
     function memberInfo_push() {
-      dispatch(
-      {type:"join/PUSH" ,payload:{id:idchk,pw:pwchk,
-      name:name,email:email,phone:phone}})
 
+      authService.createUserWithEmailAndPassword(email,pwchk).then((result)=>{
+        firestore.collection("users").doc(result.user.uid).set({user_id:idchk,
+          name:name,email:email,phone:phone})
+      })
+     
       alert("회원가입을 축하드립니다.")
     }
+
 
    
 
@@ -122,7 +111,11 @@ function Join (props) {
                   setRegister(copy);
                 }}/>
                 <button className="doublechk-btn" onClick={()=>{
-                  check_btn();           
+                  let copy = [...register];
+                  alert(Signup("ID",props.join,idchk))
+                  Signup("ID",props.join,idchk) === "사용 가능한 아이디입니다."
+                  ? copy[0] = true : copy[0] = false 
+                  setRegister(copy);  
                 }}>중복확인</button>
               </li>
 
@@ -228,12 +221,7 @@ function Join (props) {
               </li>    
 
               
-
-              <button onClick={()=>{
-                console.log(props.join)
-    
               
-              }}/>
 
              
             </ul>    

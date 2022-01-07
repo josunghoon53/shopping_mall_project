@@ -84,8 +84,7 @@ function Main(props) {
          
             <ul className = 'slider'  style={{transform:"translate("+Move+"vw)",
                                               width: props.slide.length*100+"vw"}}>
-                {
-                  
+                {   
                   props.slide.map((el,idx)=>{
                  
                   return(  

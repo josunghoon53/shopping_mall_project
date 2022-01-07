@@ -1,24 +1,29 @@
+import { useState } from 'react';
 import {Link} from 'react-router-dom';
 import { useHistory } from "react-router-dom";
+import Login from "./Login";
 
 
 
 function Header(props) {
 
     const history = useHistory();
-
+  
 
     return(  
       <div>
-        
+         
           <div className='member-container'>
-            <div className='mem login'>LOGIN</div>
+            <div className='mem login'onClick={()=>{props.setModal(true)}}>LOGIN</div>
             <div className='mem join' onClick={()=>{history.push("/join")}}>JOIN</div>
             <div className='mem cart'>CART</div>
           </div>
           <div className='logo-container' onClick={()=>{history.push("/")}}>
-            <img className='logo-img' src= "/img/95logo.png" alt=""/>
-            <div className='logo-title'>Boardshop</div>
+            <div className='logo-box'>
+              <img className='logo-img' src= "/img/95logo.png" alt=""/>
+              <div className='logo-title'>Boardshop</div>
+            </div>
+           
           </div>
         
         <div className={props.headon === false ? "navbar" : "navbar-fixed" } >
@@ -32,6 +37,10 @@ function Header(props) {
         </div>
      </div>
     )
+
+  
+
+    
   }
 
 

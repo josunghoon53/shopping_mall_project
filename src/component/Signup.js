@@ -26,16 +26,18 @@ function Signup(i,memDB,chk) {
   switch(i){
 
     case "ID": {
-
+      let id_chk = memDB.findIndex((e)=>{
+        return e.user_id === chk
+      })
      
-      if(memDB === false && chk !== ""){
+     
+      if(id_chk >= 0 && chk !== ""){
         list.push("중복된 아이디입니다.")
       }
 
       else {
         if(corrID.test(chk)) {
-          list.push("사용가능한 아이디입니다.");
-
+          return "사용 가능한 아이디입니다."
         }
         else{
           if(chk.length <4 || chk.length > 20) {
@@ -61,6 +63,7 @@ function Signup(i,memDB,chk) {
       }
 
       return list.join("\n");
+      
     }
 
     case "PW": {
@@ -95,12 +98,28 @@ function Signup(i,memDB,chk) {
 
       if(email.test(chk)){
         
-        return ""
+        let email_chk = memDB.findIndex((e)=>{
+          return e.email === chk
+        })
        
+       
+        if(email_chk >= 0 ) {
+          return "사용중인 이메일입니다."
+        }
+
+        else {
+          return ""
+        }
+
+
+
       }
+
+
       else {
-       
+
         return "유효한 이메일을 입력해주세요"
+      
       }
 
     }

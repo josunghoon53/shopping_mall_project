@@ -11,8 +11,10 @@ const user_db =()=>{
   .then((docs)=>{
     docs.forEach((doc)=>{
       user_list.push({id: doc.id,...doc.data()})
+      
     })
   })
+
   return user_list;
 }
         
