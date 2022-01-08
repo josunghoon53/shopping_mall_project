@@ -12,28 +12,39 @@ import Main from './component/Main';
 import Basket from './pages/basketPg';
 import Join from './pages/joinPg'
 import Login from './component/Login';
-
+import { authService, firestore,getAuth } from './firebase';
+import { setUser } from './modules/info';
 
 
 function App(props) {
 
   let[slide,setSlide] = useState(['main_1.png','main_2.png','main_3.png'])
   let slideSrc = './img/';
-  let [headon,setHeadon] = useState(false);
   let state  = useSelector((state)=> state.product);
   let basket = useSelector((state)=> state.basket);
   let join = useSelector((state)=> state.join);
-  let [modal,setModal] = useState(false);
-  
+  let setu = useSelector(state => state.info);
+
+  const [modal,setModal] = useState(false);
+  const [headon,setHeadon] = useState(false);
+  const [init, setInit] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState();
+  const [dpname,setDpname] = useState("");
   const dispatch = useDispatch();  
+
+ 
+  useEffect(()=>{
+    dispatch(setUser())
+  },[])
+
+  
+ 
+
 
   useEffect(()=>{
     getData().then((result)=>{
       dispatch(result);
-    })
-
-    
-    
+    }) 
   },[])
     
 
@@ -54,8 +65,13 @@ function App(props) {
 
   return (
       <div className="App"> 
-        <Header headon = {headon} setModal = {setModal}/>
-        {modal ? <Login setModal = {setModal}/>:null}
+        <Header headon = {headon} setModal = {setModal} 
+                init = {init} isLoggedIn={isLoggedIn}
+                dpname = {dpname}
+                setu = {setu}/>
+
+
+        {modal ? <Login setModal = {setModal} setIsLoggedIn = {setIsLoggedIn} />:null}
         <Switch>
           <Route exact path="/"> 
             {/*메인 이미지 슬라이드 구현 <미완>*/}
