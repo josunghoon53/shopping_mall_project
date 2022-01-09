@@ -213,19 +213,37 @@ li.phone{
 .member-container {
   display: flex;
   justify-content: right;
+  
 }
 
 .mem {
   margin-top: 15px;
   margin-right: 40px;
+  
 }
 
 .join {
   cursor: pointer;
+  font-family: "malgun-gothic",sans-serif;
+  font-size: 14px;
+  font-weight: bold;
 }
 
 
 .login {
+  cursor: pointer;
+  font-family: "malgun-gothic",sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.cart {
+  font-family: "malgun-gothic",sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.cart:hover {
   cursor: pointer;
 }
 
@@ -233,6 +251,36 @@ li.phone{
   width: 100%;
   height: 50px;
   display: flex;
+  align-items: center;
+  justify-content: right;
+  position:absolute;
+  right: 175px;
+}
+
+
+.loginuser-box {
+  display: flex;
+  align-items: center;
+}
+
+.loginuser-box:hover {
+  cursor: pointer;
+}
+
+
+
+.loginuser-container img {
+  width: 25px;
+  height: 22px;
+  margin-top: 2px;
+}
+
+.loginuser-dpname {
+  font-family: "malgun-gothic",sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  margin-top: -2px;
+  color: rgb(51, 51, 51);
 }
 
 .logo-container {
@@ -300,6 +348,73 @@ li.phone{
 .menu:hover {
   cursor: pointer;
 }
+
+/*---------프로필모달창--------------*/
+
+.profil-container {
+  background-color: rgb(26, 32, 43);
+  position: absolute;
+  right: 150px;
+  top: 60px;
+  width: 230px;
+  border-radius: 10px;
+  height: 150px;
+  z-index: 2000;
+}
+.tri{
+  width: 0px;height: 0px;
+  margin-left: 130px;
+  margin-top: -20px;
+  border-top:50px solid none;
+  border-bottom:50px solid rgb(26, 32, 43);
+  border-right: 50px solid transparent;
+  border-left: 50px solid  transparent;
+}
+
+.profil-top {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  top: 0;
+  background-color: rgb(26, 32, 43);
+  border-radius: 10px;
+  display: flex
+}
+
+
+
+
+.profil-img{
+  width: 100px;
+  position:absolute;
+  left: 12px;
+  top: 24px;
+}
+
+.profil-name {
+  margin-right: 5px;
+}
+
+.profil-infobox {
+  width: 110px;
+  position: absolute;
+  right: 10px;
+  color: aliceblue;
+  font-family: "malgun-gothic";
+  font-weight: 700;
+  font-size: 14px;
+  top: 40px;
+}
+
+
+.profil-logout:hover {
+ cursor: pointer;
+}
+
+
+
+
+
 /*---------로그인모달창--------------*/
 
 .Background {
@@ -872,6 +987,11 @@ footer {
 @font-face {
   font-family: "esmanru_l";
   src: url(./font/esamanru\ Light.ttf);
+}
+
+@font-face {
+  font-family: "malgun-gothic";
+  src: url(./font/Malgun-Gothic.ttf);
 }
 
 @media (max-width : 750px) {

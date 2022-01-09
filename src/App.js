@@ -12,8 +12,10 @@ import Main from './component/Main';
 import Basket from './pages/basketPg';
 import Join from './pages/joinPg'
 import Login from './component/Login';
+import Profil from './component/Profil';
 import { authService, firestore,getAuth } from './firebase';
-import { setUser } from './modules/info';
+
+
 
 
 function App(props) {
@@ -23,21 +25,36 @@ function App(props) {
   let state  = useSelector((state)=> state.product);
   let basket = useSelector((state)=> state.basket);
   let join = useSelector((state)=> state.join);
-  let setu = useSelector(state => state.info);
+  let observer = useSelector((state)=> state.observer);
 
   const [modal,setModal] = useState(false);
+  const [profil,setProfil] = useState(false);
   const [headon,setHeadon] = useState(false);
-  const [init, setInit] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState();
-  const [dpname,setDpname] = useState("");
+  const [dpname,setdpname] = useState();
+
   const dispatch = useDispatch();  
-
+  const userdb = firestore.collection("users")
  
-  useEffect(()=>{
-    dispatch(setUser())
-  },[])
-
   
+
+
+  useEffect(()=>{
+    authService.onAuthStateChanged((user)=>{
+      if(user) {
+        setIsLoggedIn(user)
+
+        userdb.doc(user.uid).get().then((doc)=>{
+          setdpname(doc.data().name)
+        })
+
+      } else {
+        setIsLoggedIn(false)
+      }
+    })
+  })
+
+
  
 
 
@@ -66,12 +83,12 @@ function App(props) {
   return (
       <div className="App"> 
         <Header headon = {headon} setModal = {setModal} 
-                init = {init} isLoggedIn={isLoggedIn}
-                dpname = {dpname}
-                setu = {setu}/>
-
-
+               isLoggedIn={isLoggedIn} dpname = {dpname}
+               setProfil = {setProfil}
+               profil = {profil}
+               observer= {observer}/>
         {modal ? <Login setModal = {setModal} setIsLoggedIn = {setIsLoggedIn} />:null}
+        {profil? <Profil dpname = {dpname} setProfil = {setProfil}/> : null}
         <Switch>
           <Route exact path="/"> 
             {/*메인 이미지 슬라이드 구현 <미완>*/}

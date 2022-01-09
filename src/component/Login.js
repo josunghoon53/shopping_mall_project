@@ -1,6 +1,7 @@
 import {useRef, useState} from "react"
 import { authService, firestore, persis} from "../firebase";
 
+
 function Login(props) {
 
 
@@ -31,13 +32,8 @@ function Login(props) {
         <div className="loginBtn-container">
           <button onClick={()=>{test()}} className="login-btn">로그인</button>
           <button className="signup-btn">회원가입</button>
-            <button onClick={()=>{
-        console.log(authService.currentUser);
-      }}/>
         </div>
-      </div>
-
-    
+      </div> 
     </div>
   )
 
@@ -48,9 +44,7 @@ function Login(props) {
           if(doc.data().user_id === id) {
             authService.signInWithEmailAndPassword(doc.data().email,pw).then((userCredential)=>{
               authService.setPersistence(persis.LOCAL).then(()=>{
-                console.log(userCredential);
                 props.setModal(false)
-                props.setIsLoggedIn(true)
               })
            
             });

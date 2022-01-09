@@ -1,4 +1,5 @@
 import  axios from 'axios';
+import { firestore, getAuth } from '../firebase';
 import product from './product';
 
 
@@ -40,6 +41,8 @@ export default function basket (state = basketState,action) {
           } else {
             copy[findIndx].quan++;
             localStorage.setItem("장바구니",JSON.stringify(copy))
+            
+          
           }
           return copy;
 

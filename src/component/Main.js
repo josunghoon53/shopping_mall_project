@@ -3,8 +3,7 @@ import { useEffect, useRef, useState } from "react"
 function Main(props) {
 
     let [Move,setMove] = useState(0);
-    const timeoutRef = useRef(null);
-
+   
   
   
     function moveSlide(num) {
@@ -42,8 +41,6 @@ function Main(props) {
       return () => {clearTimeout(makeclone)}
       
     },[])
-
-
 
     //setinterval 사용시 문제 발생으로 인해 커스텀 훅 사용 
     //https://overreacted.io/making-setinterval-declarative-with-react-hooks/
