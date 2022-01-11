@@ -13,17 +13,15 @@ function Header(props) {
 
     return(  
       <div>
-       
         <div className='member-container'>
           
-          {props.isLoggedIn === false
+          {localStorage.getItem("login_name") === null
             ? <div className='mem login'onClick={()=>{props.setModal(true)}}>LOGIN</div>
             : LoggedIn()
           }
           <div className='mem join' onClick={()=>{history.push("/join")}}>JOIN</div>
           <div className='mem cart' onClick={()=>{ 
-          
-              console.log(props.observer)
+            console.log( (localStorage.getItem("login_name")))
           
          }}>CART</div>
         </div>
@@ -50,11 +48,15 @@ function Header(props) {
 
 
     function LoggedIn() {
+      let display_name = localStorage.getItem("login_name")
+
       return (
-        <div className='loginuser-container' onClick={()=>{props.setProfil(!props.profil)}}>
-          <div className='loginuser-box'>
+        <div className='loginuser-container'>
+          <div className='loginuser-box'onClick={()=>{
+            props.setProfil(true)
+          }}>
             <img src='./img/user.png'/>
-            <div className='loginuser-dpname'>{props.dpname}</div>
+            <div className='loginuser-dpname'>{display_name}</div>
           </div>
         </div>
       )

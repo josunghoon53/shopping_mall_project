@@ -44,6 +44,7 @@ function Login(props) {
           if(doc.data().user_id === id) {
             authService.signInWithEmailAndPassword(doc.data().email,pw).then((userCredential)=>{
               authService.setPersistence(persis.LOCAL).then(()=>{
+                localStorage.setItem("login_name",doc.data().name);
                 props.setModal(false)
               })
            

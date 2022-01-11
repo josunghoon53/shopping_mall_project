@@ -49,6 +49,7 @@ export default function basket (state = basketState,action) {
         } else{
             copy.push(action.payload);
             localStorage.setItem("장바구니",JSON.stringify(copy))
+            
           }
           return copy;
       }

@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect, useState} from 'react';
+import { useEffect, useState, memo, useLayoutEffect} from 'react';
 import {Route,Switch} from 'react-router-dom';
 import {useDispatch,useSelector} from 'react-redux';
 import {getData} from './modules/product'
@@ -30,7 +30,7 @@ function App(props) {
   const [modal,setModal] = useState(false);
   const [profil,setProfil] = useState(false);
   const [headon,setHeadon] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [dpname,setdpname] = useState();
 
   const dispatch = useDispatch();  
@@ -52,10 +52,11 @@ function App(props) {
         setIsLoggedIn(false)
       }
     })
-  })
+  },[])
 
 
  
+
 
 
   useEffect(()=>{
