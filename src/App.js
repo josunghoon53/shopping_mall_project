@@ -17,7 +17,6 @@ import { authService, firestore,getAuth } from './firebase';
 
 
 
-
 function App(props) {
 
   let[slide,setSlide] = useState(['main_1.png','main_2.png','main_3.png'])
@@ -32,6 +31,8 @@ function App(props) {
   const [headon,setHeadon] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [dpname,setdpname] = useState();
+  const [userbasket,setUserbasket] = useState([]);
+
 
   const dispatch = useDispatch();  
   const userdb = firestore.collection("users")
@@ -43,10 +44,10 @@ function App(props) {
     authService.onAuthStateChanged((user)=>{
       if(user) {
         setIsLoggedIn(user)
-
         userdb.doc(user.uid).get().then((doc)=>{
           setdpname(doc.data().name)
-        })
+        })    
+
 
       } else {
         setIsLoggedIn(false)
@@ -54,17 +55,13 @@ function App(props) {
     })
   },[])
 
-
- 
-
-
-
   useEffect(()=>{
     getData().then((result)=>{
       dispatch(result);
     }) 
   },[])
     
+ 
 
   /*스크롤이벤트*/
   useEffect(() => {
@@ -87,8 +84,8 @@ function App(props) {
                isLoggedIn={isLoggedIn} dpname = {dpname}
                setProfil = {setProfil}
                profil = {profil}
-               observer= {observer}/>
-        {modal ? <Login setModal = {setModal} setIsLoggedIn = {setIsLoggedIn} />:null}
+               observer= {observer} userbasket = {userbasket}/>
+        {modal ? <Login setModal = {setModal} setIsLoggedIn = {setIsLoggedIn}  userbasket = {userbasket} />:null}
         {profil? <Profil dpname = {dpname} setProfil = {setProfil}/> : null}
         <Switch>
           <Route exact path="/"> 

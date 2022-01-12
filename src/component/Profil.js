@@ -1,12 +1,13 @@
 import {useEffect, useRef, useState} from "react"
 import { authService } from "../firebase";
+import { useHistory } from "react-router-dom";
 
 function Profil(props) {
 
 
 
   const profilModal = useRef()
-
+  const history = useHistory();
 
   const closeModal = (e)=>{
    
@@ -35,6 +36,8 @@ function Profil(props) {
             authService.signOut().then(()=>{
               props.setProfil(false)
               localStorage.removeItem("login_name");
+              localStorage.setItem("장바구니",JSON.stringify([]))
+              history.push("/")
             })
           }}>로그아웃</p>
         </div>

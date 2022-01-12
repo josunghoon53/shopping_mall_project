@@ -20,6 +20,7 @@ function Basket(props) {
      }, [])
   
 
+   
 
     return(
     <div className="cart-container">
@@ -71,12 +72,13 @@ function Basket(props) {
       <div className='basket-btn'>     
         <button onClick={()=>{dispatch({type:"basket/DELETE", payload:itemchecked})}} className='delbtn'>삭제하기</button>
         <button className='paybtn' onClick={()=>{
-            props.basket.map((el,idx)=>{
-                firestore.collection("users").doc(authService.currentUser.uid).collection("basket").add(
-                    {id: props.basket[idx].id, name: props.basket[idx].name, quan: props.basket[idx].quan, price: props.basket[idx].price,
-                         img: props.basket[idx].img, stock : props.basket[idx].stock}
-                )
-            })
+
+
+            
+
+
+
+
         }}>결제하기</button>  
       </div>    
   

@@ -1,10 +1,10 @@
 import {useRef, useState} from "react"
-import { authService, firestore, persis} from "../firebase";
-
+import { authService, firestore, getAuth, persis} from "../firebase";
+import { useHistory } from "react-router-dom";
 
 function Login(props) {
 
-
+  const history = useHistory();
   const USER_DB = firestore.collection("users");
 	const loginModal = useRef();
   let [id,setId] = useState();
@@ -30,7 +30,7 @@ function Login(props) {
           }}/>
         </div>
         <div className="loginBtn-container">
-          <button onClick={()=>{test()}} className="login-btn">로그인</button>
+          <button onClick={()=>{loginfuc()}} className="login-btn">로그인</button>
           <button className="signup-btn">회원가입</button>
         </div>
       </div> 
@@ -38,20 +38,24 @@ function Login(props) {
   )
 
 
-    function test() {
+    function loginfuc() {
       USER_DB.get().then((docs)=>{
         docs.forEach((doc)=>{
           if(doc.data().user_id === id) {
             authService.signInWithEmailAndPassword(doc.data().email,pw).then((userCredential)=>{
               authService.setPersistence(persis.LOCAL).then(()=>{
                 localStorage.setItem("login_name",doc.data().name);
+                history.push("/")
                 props.setModal(false)
-              })
-           
+               
+              })           
             });
           }
         })
       })
+
+      console.log(props.userbasket)
+
     }
 
 
