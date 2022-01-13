@@ -10,7 +10,6 @@ function Header(props) {
   
      
     const history = useHistory();
-    const user_db = firestore.collection("users");
     const dispatch = useDispatch();
 
 
@@ -29,8 +28,8 @@ function Header(props) {
            }}>CART</div>
         </div>
         
-        <div className='logo-container' onClick={()=>{history.push("/")}}>
-          <div className='logo-box'>
+        <div className='logo-container'>
+          <div className='logo-box'onClick={()=>{history.push("/")}}>
             <img className='logo-img' src= "/img/95logo.png" alt=""/>
             <div className='logo-title'>Boardshop</div>
           </div>

@@ -37,7 +37,7 @@ function Profil(props) {
               props.setProfil(false)
               localStorage.removeItem("login_name");
               localStorage.setItem("장바구니",JSON.stringify([]))
-              history.push("/")
+              window.location.replace("/")
             })
           }}>로그아웃</p>
         </div>

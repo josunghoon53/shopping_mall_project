@@ -2,7 +2,7 @@ import './App.css';
 import { useEffect, useState, memo, useLayoutEffect} from 'react';
 import {Route,Switch} from 'react-router-dom';
 import {useDispatch,useSelector} from 'react-redux';
-import {getData} from './modules/product'
+import {getData, product_req} from './modules/product'
 import ProductPg from './pages/productPg'
 import Toplist from './component/Toplist'
 import Detail from './pages/detailPg';
@@ -56,11 +56,8 @@ function App(props) {
   },[])
 
   useEffect(()=>{
-    getData().then((result)=>{
-      dispatch(result);
-    }) 
+    dispatch(product_req());
   },[])
-    
  
 
   /*스크롤이벤트*/

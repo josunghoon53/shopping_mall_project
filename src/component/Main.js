@@ -48,7 +48,7 @@ function Main(props) {
     
     useInterval(()=>{
       moveSlide(-100);
-    },2500)
+    },4000)
 
     function useInterval(callback, delay) {
       const savedCallback = useRef(); // 최근에 들어온 callback을 저장할 ref를 하나 만든다.

@@ -2,9 +2,12 @@ import  axios from 'axios';
 
 /* ----------------- 액션 타입 ------------------------ */
 
-const SET =  'product/SET'; 
+export const PRODUCT_REQUEST =  'product/PRODUCT_REQUEST'; 
+export const PRODUCT_SUCCESS =  'product/PRODUCT_SUCCESS'; 
+export const PRODUCT_FAILURE =  'product/PRODUCT_FAILURE'; 
+
 const SORT_DESC = 'product/SORT_DESC';
-const SORT_ASC = 'product/SORT_ASC';
+const SORT_ASC  = 'product/SORT_ASC';
 const SORT_POPU = 'product/SORT_POPU';
 
 
@@ -12,11 +15,11 @@ const SORT_POPU = 'product/SORT_POPU';
 /* ----------------- 액션 생성 함수 -------------------- */
 
 
-export const getData = async() =>{
-  const product = await axios.get("/Data.json");
+
+export const product_req = (payload) =>{
   return {
-    type : SET,
-    payload : product.data
+    type : PRODUCT_REQUEST,
+    payload,
   }
 }
 
@@ -31,7 +34,7 @@ export default function product (state = productState,action) {
     // eslint-disable-next-line default-case
     switch(action.type) {
   
-      case SET: 
+      case PRODUCT_SUCCESS: 
 
         return state = action.payload
       
