@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  margin: 0;
 }
 
 
@@ -283,13 +284,6 @@ li.phone{
   color: rgb(51, 51, 51);
 }
 
-.logo-container {
-  margin: 0 350px;
-}
-
-.logo-container:hover {
-  cursor: pointer;
-}
 
 .logo-box{
   width: 100%;
@@ -319,7 +313,7 @@ li.phone{
 .navbar {
   width: 100%;
   height: 40px;
-  background-color: rgb(19, 19, 19);
+  background-color: #131313;
   z-index: 1001;
 }
 
@@ -604,58 +598,44 @@ li.phone{
 
 /*---------------Top list 속성-------------- */
 
-.container {
-  width: 100%;
-  height: 100%;
-  padding: 0 2rem;
-  margin: 0 auto;
-  max-width: 1300px;
-}
-.title-container {
-  width: 100%;
-  height: 30px;
-  margin-bottom: 10px;
-}
 
-.title-container div {
-  float: left;
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.list-container {
+.top-container {
   width: 100%;
+  overflow: hidden;
+  
   
 }
-.listbox{
-  display: flex;
-  list-style: none;
-  padding: 0;
-}
 
-.list:not(:last-child){
-  margin-right: 30px;
-}
-
-.img-wrapper {
-  border: solid 1px rgb(187, 187, 187);
-}
-
-.img-wrapper img {
-  width: 100%;
-  height : 100%;
-  object-fit: cover;
-}
-
-.box {
-  position: absolute;
-  width: 50px;
+.top-box{
+  background-image: linear-gradient(to top, #ffffff, #c0c0c2, #838488, #4b4d53, #131313);
+  width: 900px;
+  height: 500px;
+  border-radius: 2px;
   overflow: hidden;
 }
-.box img {
-  position: relative;
-  top: -10px;
+
+.top-ul {
+  list-style: none;
+  display: flex;
+  padding: 0;
+  margin: 0;
+  margin-top: 30px;
 }
+
+.top-li {
+  height: 380px;
+  background-color: lawngreen;
+  width: 274px;
+  margin-left: 20px;
+  border-radius: 7px;
+}
+
+
+
+
+
+
+
 
 /*--------------------------------------- */
 footer {
@@ -1010,7 +990,6 @@ footer {
     flex-direction: column;
 
   }
-
   .detail-imgwrap {
     margin: 15px auto;
   }
@@ -1022,13 +1001,11 @@ footer {
     width: 300px;
     margin-left: 43px;
   }
-
   .detail-button {
     margin-top: 30px;
     margin-bottom: 20px;
     margin-left: -15px;
   }
-  
   .detail-button button {
     width: 140px;
     height: 50px;
@@ -1039,31 +1016,29 @@ footer {
 
 /*모바일*/
 @media all and (max-width:479px) {
-
   .detail-product {
     width: 350px;
-
   }
   .detail-box {
     width: 350px;
     margin-left: -68px;
   }
-
   .detail-imgwrap {
     margin-left: -25px;
   }
-
   .detail-button {
     margin-left: 30px;
   }
-  .img-wrapper {
-    width: 90px;
-    height: 200px;
-  }
-
+  
   .container {
     margin-left: -20px;
   }
+
+  /*-----------------toplist---------------*/
+  .top-box{
+    margin-left: 5px;
+  }
+  
 
 }
 
