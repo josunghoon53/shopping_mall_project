@@ -63,7 +63,7 @@ function App(props) {
   /*스크롤이벤트*/
   useEffect(() => {
     const  ScrollFunc = () => {
-      if(window.pageYOffset <= 99){
+      if(window.pageYOffset <=100 ){
         setHeadon(false);
       } else{
         setHeadon(true);

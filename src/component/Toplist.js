@@ -1,19 +1,23 @@
-import React, { useEffect,useState,useRef} from 'react';
+import React, { useEffect,useState,useRef, useLayoutEffect} from 'react';
 import {Link} from 'react-router-dom';
 import {useDispatch,useSelector} from 'react-redux';
+import { findDOMNode } from 'react-dom';
+
 
 function Toplist(props) {
 
-
   const top = useRef();
   const ul = useRef();
+  const li = useRef();
+  
 
   const [boxwidth,setBoxwidth] = useState();
-  const [liwidth,setliwidth] = useState(294)
-  const [ulwidth,setUlwidth] = useState(0)
-  const [testnum,setTestnum] = useState([1,2,3,4])
-  const [ulmove,setUlmove] = useState(testnum.length*-liwidth);
 
+
+  const [liwidth,setliwidth] = useState(289)
+  const [ulwidth,setUlwidth] = useState(0)
+  const [testnum,setTestnum] = useState([])
+  const [ulmove,setUlmove] = useState(4*-liwidth);
 
   const [touchStartClientX, setTouchStartClientX] = useState(0);
   const [touchEndClientX, setTouchEndClientX] = useState(0);
@@ -21,8 +25,9 @@ function Toplist(props) {
 
   //현재 슬라이드 위치
   const [slideIdx,setSlideidx] = useState(0);
-
   let [change_chk,setChangechk] = useState(0)
+  const dispatch = useDispatch();
+
 
   /*
     양쪽이 일정하게 화면밖으로 나가도록 반응형 구현
@@ -41,17 +46,21 @@ function Toplist(props) {
   },[]);
 
 
+  useEffect(()=>{
+    props.state.map((el,idx)=>{
+      if(idx < 4)
+      setTestnum(testnum=> [...testnum,el])
+      if(idx === 3){
+        setTestnum(testnum=> [...testnum,...testnum,...testnum])
+      }  
+    })
+  },[props.state])
+
   //슬라이드복제 -- 무한슬라이드
   useEffect(()=>{
-    const makeclone = ()=>{
-      let clone = [...testnum,...testnum,...testnum];
-      setTestnum(clone)
-      setUlwidth(clone.length*liwidth)
-    }
-    makeclone();
-    return ()=>clearTimeout(makeclone)
-  },[])
-
+    if(testnum.length!==0)
+    setUlwidth(testnum.length*liwidth)
+  },[testnum.length])
 
   function change(){
     setChangechk(prev =>prev-1)
@@ -75,7 +84,6 @@ function Toplist(props) {
   } 
   
   
-
   //모바일 드래그 슬라이드 구현
 
   const ontouchstart = (e) =>{
@@ -100,24 +108,44 @@ function Toplist(props) {
   }, [touchEndClientX]);
   
 
+
   
   return(
     <div>
-      <button onClick={()=>{moveslide(slideIdx-1)}} style={{width:"50px", height :"50px"}}>prev</button>
-      <button onClick={()=>{moveslide(slideIdx+1)}} style={{width:"50px", height :"50px"}}>next</button>
       <div className='top-container'>
+        <div className='top-arrow'>
+          <img onClick={()=>{
+            moveslide(slideIdx+1)
+          }} className='top-left' src='./img/leftarrow.png'/>
+          <img onClick={()=>{
+            moveslide(slideIdx-1)     
+          }} className='top-right' src='./img/rightarrow.png'/>
+        </div>
+        <div className='top-title'>BEST</div>
         <div style={{transform:`translateX(${boxwidth/2}px)`}} ref={top} className='top-box'>
           <ul onTouchStart={ontouchstart}  
               onTouchEnd={ontouchend}
           style={{transform:`translateX(${ulmove}px)`,width:`${ulwidth}px`}} 
           ref={ul} className='top-ul'>
-            {testnum.map((el,idx)=>{
-              return(
-                <li key={idx} className='top-li'>{testnum[idx]}</li>
-              )
-            })}
+          {testnum.map((el,idx)=>{
+            return(
+              <li ref={li} key={idx} className='top-li'>
+                <img src={testnum[idx].img}/>
+                <div className='top-imginfo'>
+                  <p className='top-imgname'>{testnum[idx].name}</p>
+                  <p className='top-imgprice'>{testnum[idx].price.toLocaleString()}<span className='topunit'>원</span></p>
+                </div>
+              </li>
+            )
+          })}
           </ul>
         </div>
+        <div className='banner'>
+          <a href='https://cafe.naver.com/longboardkorea' target='_blank'>
+            <img src='./img/longkor_cafe_banner.jpg'/>
+          </a>
+        </div>
+      
       </div>
     </div>  
   )

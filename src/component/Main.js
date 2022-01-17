@@ -3,51 +3,28 @@ import { useEffect, useRef, useState } from "react"
 function Main(props) {
 
     let [Move,setMove] = useState(0);
-   
-  
+    let[dot,setdot] = useState(['','',''])
+    let[mouseover,setmouseover] = useState(false)
   
     function moveSlide(num) {
       // eslint-disable-next-line default-case
-      switch(num){
-        case 100: {
-          if(Move ===0) {
-            setMove(-500);
-          } else{
-          setMove(Move+num)
-          }
-          break;
-        }
-        case -100:{
-          if(Move ===-800) {
-            setMove(-300);
-          } else{
-          setMove(Move+num)
-          }
-          break;
-        }
+      setMove(Move+num)
+    
+      if(Move === -200) {
+        setMove(0)
       }
     }
 
-    useEffect(()=>{
-      const makeclone = () =>{
-        let copy = [...props.slide];
-        copy.push(...props.slide);
-        copy.unshift(...props.slide);
-        props.setSlide(copy);
-      };
-      setMove(-300);
-      makeclone();
-    
-      return () => {clearTimeout(makeclone)}
-      
-    },[])
+
 
     //setinterval 사용시 문제 발생으로 인해 커스텀 훅 사용 
     //https://overreacted.io/making-setinterval-declarative-with-react-hooks/
     //위 링크 참조해서 setinterval과 useinterval 의 차이 공부하기
     
     useInterval(()=>{
+      if(mouseover!==true){
       moveSlide(-100);
+      }
     },4000)
 
     function useInterval(callback, delay) {
@@ -67,32 +44,37 @@ function Main(props) {
         }
       }, [delay]); // delay가 바뀔 때마다 새로 실행된다.
     }
-  
 
 
     return(      
       <section>
         <div className='slidemain'> 
-          <div className='sl-container'>
-            <div className='arrow'>
-              <img className='arrowleft' onClick={()=>{moveSlide(-100)}} src ='./img/leftArrow.png' alt=""/>
-              <img className='arrowright'  onClick={()=>{moveSlide(100)}} src ='./img/rightArrow.png' alt=""/>
-            </div>
-         
+          <div onMouseOver={()=>{setmouseover(true)}} onMouseOut={()=>{setmouseover(false)}} className='sl-container'>
             <ul className = 'slider'  style={{transform:"translate("+Move+"vw)",
                                               width: props.slide.length*100+"vw"}}>
                 {   
-                  props.slide.map((el,idx)=>{
-                 
+                  props.slide.map((el,idx)=>{ 
                   return(  
-                    <li key={idx}  className="slide">                    
+                    <li key={idx}  className="slide">     
                       <img  className = "mainImg" 
                             src={props.slideSrc+props.slide[idx]} 
                             alt =""/>
+                     
                     </li>
                   )})
-                }       
+                }
             </ul>
+            <div className="dot-box">
+            {dot.map((el,idx)=>{
+              return(
+                <img onClick={()=>{
+                  setMove(idx*-100)
+                }} className="maindot" src= {Move/-100 === idx 
+                  ? './img/black_record.png' : './img/record.png'}/>
+
+              )
+            })}
+          </div>
           </div>
         </div> 
     </section>

@@ -10,7 +10,6 @@ function ProductPg(props) {
 
   
     useEffect(() => {
-
         setWidth((ulWidth.current.clientWidth-30)/4)
         const resizeFuc = () =>{
           setWidth((ulWidth.current.clientWidth-30)/4)
@@ -21,6 +20,7 @@ function ProductPg(props) {
         };
     },);
     
+   
     
     return (
         <div className="inner">
@@ -35,7 +35,7 @@ function ProductPg(props) {
                 </div>    
                 <div className="product-box">
                     <ul className="ulProduct" ref={ulWidth}>
-                        {props.state && props.state.map((el,idx)=>{
+                        {props.state.map((el,idx)=>{
                             return(
                           <Link key={idx} style={{all:'unset'}} to = {`/detail/${idx}`}>   
                             <li key={idx} className="liProduct">

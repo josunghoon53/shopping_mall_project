@@ -6,9 +6,10 @@ export const PRODUCT_REQUEST =  'product/PRODUCT_REQUEST';
 export const PRODUCT_SUCCESS =  'product/PRODUCT_SUCCESS'; 
 export const PRODUCT_FAILURE =  'product/PRODUCT_FAILURE'; 
 
+export const SORT_POPU = 'product/SORT_POPU';
 const SORT_DESC = 'product/SORT_DESC';
 const SORT_ASC  = 'product/SORT_ASC';
-const SORT_POPU = 'product/SORT_POPU';
+
 
 
 
@@ -36,6 +37,7 @@ export default function product (state = productState,action) {
   
       case PRODUCT_SUCCESS: 
 
+
         return state = action.payload
       
       case SORT_DESC: 
@@ -53,6 +55,8 @@ export default function product (state = productState,action) {
         return copy_a;    
 
       case SORT_POPU:
+        
+        state = action.payload
         let copy_p = [...state];
 
         copy_p.sort(function(a,b) {
