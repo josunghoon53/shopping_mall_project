@@ -19,7 +19,7 @@ function Login(props) {
       <div className="login-container">
         <div className="loginTitle-container">
           <p className="loginTitle">로그인</p>
-          <button className="loginCloseBtn" onClick={()=>{props.setModal(false)}}><img src="./img/close.png"/></button>
+          <button className="loginCloseBtn" onClick={()=>{props.setModal(false)}}><img src="../img/close.png"/></button>
         </div>
         <div className="loginInput-container">
           <input type="text" className="loginID" placeholder="아이디" onChange={(e)=>{

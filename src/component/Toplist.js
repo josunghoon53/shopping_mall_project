@@ -113,14 +113,6 @@ function Toplist(props) {
   return(
     <div>
       <div className='top-container'>
-        <div className='top-arrow'>
-          <img onClick={()=>{
-            moveslide(slideIdx+1)
-          }} className='top-left' src='./img/leftarrow.png'/>
-          <img onClick={()=>{
-            moveslide(slideIdx-1)     
-          }} className='top-right' src='./img/rightarrow.png'/>
-        </div>
         <div className='top-title'>BEST</div>
         <div style={{transform:`translateX(${boxwidth/2}px)`}} ref={top} className='top-box'>
           <ul onTouchStart={ontouchstart}  

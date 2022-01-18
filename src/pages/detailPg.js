@@ -2,6 +2,7 @@ import { useEffect,useRef,useState} from "react"
 import { useDispatch } from "react-redux";
 import {useParams} from 'react-router-dom';
 import { useHistory } from "react-router-dom";
+import Tab from "../component/Tab"
 
 function Detail(props) {
 
@@ -9,6 +10,28 @@ function Detail(props) {
     let width = useRef();
     const history = useHistory();
     const dispatch = useDispatch();
+    const [tabwidth,setTabwidth] = useState(800);
+    const [istab,setIstab] = useState(0)
+    
+
+    useEffect(()=>{
+        const resizetab = ()=>{
+            if(window.innerWidth <= 860) {
+                setTabwidth(window.innerWidth-40)
+            } else {
+                setTabwidth(800)
+            }
+        }
+
+        resizetab();
+
+        window.addEventListener("resize", resizetab);
+        return () => {
+          window.removeEventListener("resize", resizetab);
+        };
+    
+    })
+
 
 
     return(
@@ -30,6 +53,14 @@ function Detail(props) {
                     </div>
                 </div>
             </div>
+
+            <div style={{width:`${tabwidth}px`}} className="tab-btnbox">
+              <button onClick={()=>{setIstab(0)}} className="tab1">1</button>
+              <button onClick={()=>{setIstab(1)}} className="tab2">2</button>
+            </div>
+
+            <Tab tabwidth={tabwidth} istab={istab} state={props.state}/>
+         
         </div>
     )
 
@@ -50,9 +81,6 @@ function Detail(props) {
 
     }
    
-
-
-
 }
 
 

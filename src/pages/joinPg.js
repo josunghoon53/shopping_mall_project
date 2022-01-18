@@ -121,7 +121,6 @@ function Join (props) {
 
               <li className="info pw">
                 <div className="infoname">비밀번호</div>
-                
                 <input onChange={(e)=>{
                   setPwchk(e.target.value)
                   Signup("PW",props.join,e.target.value) === "사용 가능한 패스워드입니다." 
@@ -242,10 +241,10 @@ function Join (props) {
               {toutext.map((el,idx)=>{             
                 return(
                   <div key={idx} className="tou">
-                  <p>{toutext[idx].name}</p> 
-                  <div className="toutext-box">  
+                  <details className="toutext-box">  
+                   <summary style={{}}>{toutext[idx].name}</summary>
                    <embed className="toutext" src={toutext[idx].embed}/>
-                  </div>
+                  </details>
                   <div className="touitem">
                     <p>{toutext[idx].text}</p>
                     <label className="check-custom">

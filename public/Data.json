@@ -42,7 +42,9 @@
             "stock" :  3,
             "img" : "/data/추가상품2.jpg",
             "count": 0,
-            "amount": 0
+            "amount": 0,
+            "photo" : ["/data/flam1.png","/data/flam2.jpg"],
+            "product" : ["/data/flamphoto1.jpg","/data/flamphoto2.jpg"]
         },
         {
             "id"    : 5,

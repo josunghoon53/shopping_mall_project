@@ -58,7 +58,6 @@ export default function product (state = productState,action) {
         
         state = action.payload
         let copy_p = [...state];
-
         copy_p.sort(function(a,b) {
           return parseFloat(a.id)-parseFloat(b.id) 
         })
