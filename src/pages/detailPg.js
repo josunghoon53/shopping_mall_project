@@ -34,6 +34,8 @@ function Detail(props) {
 
 
 
+
+
     return(
         <div className="detail-container">
             <div className='detail-product' ref={width}>
@@ -43,7 +45,9 @@ function Detail(props) {
                 <div className='detail-box'>
                     <div className="detail-text">
                         <div className="detail-name"> {props.state[id]?.name} </div>
-                        <div className="detail-price">price : {props.state[id]?.price}원 </div>
+                        <div className="detail-price">{props.state[id]?.price.toLocaleString()}
+                          <span style={{fontSize:"15px", position:"relative", bottom:"3px", left:"2px"}}>원</span>
+                        </div>
                     </div>
                     <div className='detail-button'>
                         <button onClick={()=>{
@@ -54,12 +58,13 @@ function Detail(props) {
                 </div>
             </div>
 
-            <div style={{width:`${tabwidth}px`}} className="tab-btnbox">
-              <button onClick={()=>{setIstab(0)}} className="tab1">1</button>
-              <button onClick={()=>{setIstab(1)}} className="tab2">2</button>
-            </div>
 
-            <Tab tabwidth={tabwidth} istab={istab} state={props.state}/>
+
+            <div style={{width:`${tabwidth}px`}} className="tab-btnbox">
+              <button onClick={()=>{setIstab(0)}} className={istab === 0 ? 'select-tab' : 'no-tab'}>제품상세정보</button>
+              <button onClick={()=>{setIstab(1)}} className={istab === 1 ? 'select-tab' : 'no-tab'}>제품사진</button>
+            </div>
+            <Tab tabwidth={tabwidth} istab={istab} state={props.state} id ={id}/>
          
         </div>
     )

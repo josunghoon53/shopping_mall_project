@@ -64,17 +64,17 @@ function Main(props) {
                   )})
                 }
             </ul>
-            <div className="dot-box">
-            {dot.map((el,idx)=>{
-              return(
-                <img onClick={()=>{
-                  setMove(idx*-100)
-                }} className="maindot" src= {Move/-100 === idx 
-                  ? './img/black_record.png' : './img/record.png'}/>
+              <div className="dot-box">
+              {dot.map((el,idx)=>{
+                return(
+                  <img key={idx} onClick={()=>{
+                    setMove(idx*-100)
+                  }} className="maindot" src= {Move/-100 === idx 
+                    ? './img/black_record.png' : './img/record.png'}/>
 
-              )
-            })}
-          </div>
+                )
+              })}
+            </div>
           </div>
         </div> 
     </section>

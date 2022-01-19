@@ -12,8 +12,7 @@ function Header(props) {
     const history = useHistory();
     const dispatch = useDispatch();
 
-
-   
+ 
 
     return(  
       <div>
@@ -50,14 +49,17 @@ function Header(props) {
 
 
     function LoggedIn() {
-      
 
-      //로그인하면 db에서 회원별장바구니 목록을 가져와서 로컬스토리지에 넣어준다.
+    
+
+      //React has detected a change in the order of Hooks called by Header
+      //최상위(at the Top Level)에서만 Hook을 호출해야 합니다
+      //warning _ 버그로 이어질 가능성있음_수정요망
       useEffect(()=>{
         dispatch(basket_req())
       },[])
   
-    
+      
       let display_name = localStorage.getItem("login_name")
 
       return (
@@ -65,7 +67,7 @@ function Header(props) {
           <div className='loginuser-box'onClick={()=>{
             props.setProfil(true)
           }}>
-            <img src='./img/user.png'/>
+            <img  src={process.env.PUBLIC_URL + '/img/user.png'}/>
             <div className='loginuser-dpname'>{display_name}</div>
           </div>
         </div>

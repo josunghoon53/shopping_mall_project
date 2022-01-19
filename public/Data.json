@@ -5,7 +5,9 @@
             "price" : 10000,
             "stock" :  5,
             "img" : "/data/상품이미지_1.png",
-            "count": 0
+            "count": 0,
+            "photo" : ["/detailphoto/panda1.PNG",""],
+            "product" : ["/detailphoto/pandaphoto1.jpg","/detailphoto/pandaphoto2.jpg"]
         },
         {
             "id"    : 1,
@@ -14,7 +16,9 @@
             "stock" :  4,
             "img" : "/data/상품이미지_2.png",
             "count": 0,
-            "amount": 0
+            "amount": 0,
+            "photo" : ["/detailphoto/mata1.png",""],
+            "product" : ["/detailphoto/mataphoto1.jpg","/detailphoto/mataphoto2.jpg"]
 
         },
         {
@@ -24,7 +28,9 @@
             "stock" :  12,
             "img" : "/data/상품이미지_3.jpg",
             "count": 0,
-            "amount": 0
+            "amount": 0,
+            "photo" : ["/detailphoto/tort1.jpg","/detailphoto/tort2.jpg"],
+            "product" : ["/detailphoto/tortphoto1.jpg","/detailphoto/tortphoto2.jpg"]
         },
         {
             "id"    : 3,
@@ -33,7 +39,9 @@
             "stock" :  3,
             "img" : "/data/추가상품1.jpg",
             "count": 0,
-            "amount": 0
+            "amount": 0,
+            "photo" : ["/detailphoto/axolotl1.jpg","/detailphoto/axolotl2.jpg"],
+            "product" : ["/detailphoto/axolphoto1.jpg","/detailphoto/axolphoto2.jpg"]
         },
         {
             "id"    : 4,
@@ -43,8 +51,8 @@
             "img" : "/data/추가상품2.jpg",
             "count": 0,
             "amount": 0,
-            "photo" : ["/data/flam1.png","/data/flam2.jpg"],
-            "product" : ["/data/flamphoto1.jpg","/data/flamphoto2.jpg"]
+            "photo" : ["/detailphoto/flam1.png","/detailphoto/flam2.jpg"],
+            "product" : ["/detailphoto/flamphoto1.jpg","/detailphoto/flamphoto2.jpg"]
         },
         {
             "id"    : 5,
@@ -53,7 +61,9 @@
             "stock" :  7,
             "img" : "/data/추가상품3.jpg",
             "count": 0,
-            "amount": 0
+            "amount": 0,
+            "photo" : ["/detailphoto/kiwi1.PNG","/detailphoto/kiwi2.jpg"],
+            "product" : ["/detailphoto/kiwiphoto1.jpg","/detailphoto/kiwiphoto2.jpg"]
         },
 
         {
@@ -61,17 +71,21 @@
             "name"  : "팀버보드 엘토르",
             "price" : 15000,
             "stock" :  7,
-            "img" : "/data/추가상품4.jpg",
+            "img" : "/data/추가상품5.jpg",
             "count": 0,
-            "amount": 0
+            "amount": 0,
+            "photo" : ["/detailphoto/elto1.PNG"],
+            "product" : ["/detailphoto/eltophoto1.jpg","/detailphoto/eltophoto2.jpg"]
         },
         {
             "id"    : 7,
             "name"  : "팀버보드 토투가",
             "price" : 15000,
             "stock" :  7,
-            "img" : "/data/추가상품5.jpg",
+            "img" : "/data/추가상품4.jpg",
             "count": 0,
-            "amount": 0
+            "amount": 0,
+            "photo" : ["/detailphoto/totu1.PNG","/detailphoto/totu2.jpg"],
+            "product" : ["/detailphoto/totuphoto1.jpg","/detailphoto/totuphoto2.jpg"]
         }
 ]

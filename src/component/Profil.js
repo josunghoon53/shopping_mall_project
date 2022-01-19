@@ -29,7 +29,7 @@ function Profil(props) {
     <div  ref={profilModal}  className="profil-container">
       <div className="tri"/>
       <div className="profil-top">
-        <img className = "profil-img" src="./img/user.png"/>
+        <img className = "profil-img" src={process.env.PUBLIC_URL + '/img/user.png'}/>
         <div className="profil-infobox">
           <p className="profil-name">{localStorage.getItem("login_name")}</p>
           <p className="profil-logout" onClick={()=>{

@@ -32,7 +32,8 @@ function App(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [dpname,setdpname] = useState();
   const [userbasket,setUserbasket] = useState([]);
-
+  const [ScrollY, setScrollY] = useState(0);
+  const [ScrollActive, setScrollActive] = useState(false); 
 
   const dispatch = useDispatch();  
   const userdb = firestore.collection("users")
@@ -47,8 +48,6 @@ function App(props) {
         userdb.doc(user.uid).get().then((doc)=>{
           setdpname(doc.data().name)
         })    
-
-
       } else {
         setIsLoggedIn(false)
       }
@@ -63,12 +62,16 @@ function App(props) {
   /*스크롤이벤트*/
   useEffect(() => {
     const  ScrollFunc = () => {
-      if(window.pageYOffset <=100 ){
+      if(ScrollY < 166) {
+        setScrollY(window.pageYOffset);
         setHeadon(false);
-      } else{
+      } else {
+        setScrollY(window.pageYOffset);
         setHeadon(true);
       }
     } 
+
+
     window.addEventListener("scroll", ScrollFunc);
     return () => {
       window.removeEventListener("scroll", ScrollFunc);
@@ -82,7 +85,7 @@ function App(props) {
                setProfil = {setProfil}
                profil = {profil}
                observer= {observer} userbasket = {userbasket}/>
-        {modal ? <Login setModal = {setModal} setIsLoggedIn = {setIsLoggedIn}  userbasket = {userbasket} />:null}
+        {modal ? <Login modal = {modal} setModal = {setModal} setIsLoggedIn = {setIsLoggedIn}  userbasket = {userbasket} />:null}
         {profil? <Profil dpname = {dpname} setProfil = {setProfil}/> : null}
         <Switch>
           <Route exact path="/"> 

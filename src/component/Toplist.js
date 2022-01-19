@@ -2,6 +2,7 @@ import React, { useEffect,useState,useRef, useLayoutEffect} from 'react';
 import {Link} from 'react-router-dom';
 import {useDispatch,useSelector} from 'react-redux';
 import { findDOMNode } from 'react-dom';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 function Toplist(props) {
@@ -9,7 +10,7 @@ function Toplist(props) {
   const top = useRef();
   const ul = useRef();
   const li = useRef();
-  
+  const history = useHistory();
 
   const [boxwidth,setBoxwidth] = useState();
 
@@ -22,6 +23,7 @@ function Toplist(props) {
   const [touchStartClientX, setTouchStartClientX] = useState(0);
   const [touchEndClientX, setTouchEndClientX] = useState(0);
   const [cursorOn, setCursorOn] = useState(false);
+
 
   //현재 슬라이드 위치
   const [slideIdx,setSlideidx] = useState(0);
@@ -109,20 +111,44 @@ function Toplist(props) {
   
 
 
+  //데탑 드래그 슬라이드 구현
+
+  const onmousedown = (e) =>{
+    setTouchStartClientX(e.clientX)
+    setCursorOn(true)
+  }
+
+  const onmouseup = (e) =>{
+    setTouchEndClientX(e.clientX)
+    setCursorOn(false)
+  }
+
+  useEffect(() => {
+    const dragSpace = Math.abs(touchStartClientX - touchEndClientX);
+    if (touchStartClientX !== 0) {
+      if (touchEndClientX < touchStartClientX && dragSpace > 100) {
+        moveslide(slideIdx+1);
+      } else if (touchEndClientX > touchStartClientX && dragSpace > 100) {
+        moveslide(slideIdx-1);
+      }
+    }
+  }, [touchEndClientX]);
   
   return(
     <div>
       <div className='top-container'>
         <div className='top-title'>BEST</div>
         <div style={{transform:`translateX(${boxwidth/2}px)`}} ref={top} className='top-box'>
-          <ul onTouchStart={ontouchstart}  
+          <ul onMouseDown={onmousedown}
+              onMouseUp={onmouseup}
+              onTouchStart={ontouchstart}  
               onTouchEnd={ontouchend}
           style={{transform:`translateX(${ulmove}px)`,width:`${ulwidth}px`}} 
           ref={ul} className='top-ul'>
           {testnum.map((el,idx)=>{
             return(
               <li ref={li} key={idx} className='top-li'>
-                <img src={testnum[idx].img}/>
+                <img src={testnum[idx].img} onClick={()=>{history.push(`/detail/${props.state.indexOf(el)}`)}}/>
                 <div className='top-imginfo'>
                   <p className='top-imgname'>{testnum[idx].name}</p>
                   <p className='top-imgprice'>{testnum[idx].price.toLocaleString()}<span className='topunit'>원</span></p>

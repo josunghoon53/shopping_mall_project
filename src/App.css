@@ -249,7 +249,8 @@ summary {
   display: flex;
   justify-content: right;
   margin-bottom: -15px;
-  
+  border-bottom: 1px solid rgb(202, 202, 202);
+  padding-bottom: 12px;
 }
 
 .mem {
@@ -327,6 +328,7 @@ summary {
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
+  margin-top: 33px;
 
 }
 
@@ -565,6 +567,7 @@ summary {
   width: 100%;
   height: 100%;
   margin-bottom: 70px;
+  overflow: hidden;
 }
 
 
@@ -686,6 +689,10 @@ summary {
   margin-left: 15px;
 }
 
+.top-li:hover {
+  cursor: pointer;
+}
+
 
 .top-li img {
   width: 95%;
@@ -693,6 +700,7 @@ summary {
   border-radius: 7px;
   box-shadow: 2px 2px 10px 2px rgba(0, 0, 0, 0.3);
   object-fit: cover;
+  -webkit-user-drag: none;
 }
 
 .top-imginfo {
@@ -764,20 +772,21 @@ footer {
 
 .product-container {
   width: 100%;
-  height: 1300px;  
+  height: auto;  
   margin-top: 50px;
 } 
 
 .product-title{
   width: 100%;
   height: 50px;
-  font-size: 23px;
+  font-size: 25px;
   font-family: "malgun-gothic",sans-serif;
   font-weight: bold;
   padding-top: 8px;
   border-bottom: rgb(209, 209, 209) solid 1px;
   text-align: left;
   margin-top: 95px;
+  padding-left: 10px;
 }
 
 .sort-box {
@@ -788,6 +797,7 @@ footer {
   display: flex;
   justify-content: right;
   align-items: center;
+  padding-right: 10px;
 }
 .sort-box:hover {
   cursor: pointer;
@@ -912,6 +922,7 @@ footer {
   margin-left: 50px;
 }
 
+
 .detail-text {
   width: 335px;
   border-top: 2px solid rgb(134, 134, 134);
@@ -927,10 +938,12 @@ footer {
 }
 
 .detail-price {
-  margin-top: 15px;
+  margin-top: 18px;
   padding-left: 3px;
-  padding-bottom: 16px;
-  font-size: 15px;
+  padding-bottom: 13px;
+  font-size: 25px;
+  font-family:'cafe';
+  font-weight: bold;
   border-bottom: solid 1px rgb(201, 201, 201);
 }
 
@@ -958,8 +971,7 @@ footer {
 }
 
 .tab-btnbox {
-  background-color: blue;
-  height: 60px;
+  height: 55px;
   width: 800px;
   margin: 0 auto;
   margin-top: 50px;
@@ -968,7 +980,13 @@ footer {
 .tab-btnbox button {
   width: 50%;
   height: 100%;
-  border-bottom: none;
+  border-top: 1px solid rgb(220, 220, 220);
+  border-left: 1px solid rgb(220, 220, 220);
+  border-right: 1px solid rgb(220, 220, 220);
+  font-family: 'malgun-gothic';
+  font-weight: bold;
+  font-size: 15px;
+
 }
 
 .tab-btnbox button:not(:last-child) {
@@ -984,7 +1002,19 @@ footer {
   overflow:hidden;
   word-wrap:break-word;
   text-align: left;
-  border: 1px solid rgb(0, 0, 0);
+  border: 1px solid rgb(220, 220, 220);
+  border-top: none;
+}
+
+.select-tab {
+  background-color: white;
+  border-bottom: none;
+  color: rgb(0, 0, 0);
+}
+
+.no-tab {
+  color: rgb(160, 160, 160);
+  border-bottom: 2px solid rgb(220, 220, 220);
 }
 
 .tab-content img {
@@ -998,7 +1028,7 @@ footer {
 
 .cart-container {
   width: 800px;
-  height: 800px;
+  height: auto;
   margin: 0 auto;
   margin-top: 70px;
 }
@@ -1079,11 +1109,79 @@ footer {
   display: flex;
 }
 
+.finalbasket {
+  width: 100%;
+  height: 350px;
+  margin-top: 100px;
+  
+}
+
+.line-top {height:1px;background:#5d5d5d;font-size:0;line-height:0;padding:0;margin:0;}
+.line-bottom {height:1px;background:#5d5d5d;font-size:0;line-height:0;padding:0;margin-top:60px;}
+
+.finaltitle { 
+  background:#FFF;
+  font-family:'malgun-gothic';
+  font-weight: bolder;
+  font-size:20px;
+  margin-left: 25px;
+  margin-top: -17px;
+  position:absolute;
+  color: #2e2d2d;
+}
+
+
+.table {
+  height: 180px;
+  width: 800px;
+  text-align: center;
+  margin-top: 50px;
+  font-family: 'malgun-gothic';
+  font-weight: bold;
+}
+
+.table td {
+  vertical-align : middle;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  
+}
+.table thead {
+  font-size: 14px;
+}
+
+.table tbody {
+  font-size: 17px;
+}
+
+
+.alltotal {
+  border-left: 1px solid;
+  font-size: 20px;
+  flex-grow: 1;
+}
+
+
+.alltotal div {
+  margin-left: 10px;
+}
+
+.basketlastBtn{
+  display: flex;
+  position: relative;
+}
+
+.basketbtnBox{
+  margin-top: 40px;
+}
+
+.basketbtnBox button {
+  margin-left: 10px;
+}
+
 .paybtn {
   width: 150px;
   height: 50px;
-  margin-left: 230px;
-  margin-top: 50px;
   border: solid 1px rgb(170, 170, 170);
   background-color: rgb(87, 87, 87);
   color: rgb(255, 255, 255);
@@ -1241,6 +1339,8 @@ footer {
     overflow: hidden;
     position: relative;
   }
+
+
 
   .slidemain {
     width: 100%;

@@ -4,8 +4,8 @@ function Tab(props) {
   if(props.istab === 0){
     return (
       <div style={{width:`${props.tabwidth}px` }} className="tab-content">
-        <img src= {props.state[1]?.photo[0]}/>
-        <img src= {props.state[1]?.photo[1]}/>
+        <img src= {props.state[props.id]?.photo[0]}/>
+        <img src= {props.state[props.id]?.photo[1]}/>
       </div>
     ) 
   }
@@ -13,8 +13,8 @@ function Tab(props) {
   if(props.istab === 1) {
     return(
     <div style={{width:`${props.tabwidth}px` }} className="tab-content">
-        <img src= {props.state[1]?.product[0]}/>
-        <img src= {props.state[1]?.product[1]}/>
+        <img src= {props.state[props.id]?.product[0]}/>
+        <img src= {props.state[props.id]?.product[1]}/>
     </div>
     )
   }
