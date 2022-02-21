@@ -3,4 +3,4 @@
 
 [리액트_쇼핑물_프로젝트][link]
 
-[link]: https://shop-toyproject.netlify.app/ 
+[link]: shopping-mall-cdaf5.web.app
