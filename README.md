@@ -3,4 +3,4 @@
 
 [리액트_쇼핑물_프로젝트][link]
 
-[link]: shopping-mall-cdaf5.web.app
+[link]: https://shopping-mall-cdaf5.firebaseapp.com/
